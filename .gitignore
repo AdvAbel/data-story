@@ -1,0 +1,25 @@
+# Files that must never be saved in git or published to GitHub Pages.
+
+# macOS and Windows folder clutter
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# Temporary, backup and log files
+*.tmp
+*.temp
+*.bak
+*.log
+*~
+*.swp
+
+# Editor and tool settings (local to this computer)
+.claude/
+.vscode/
+.idea/
+
+# Test pages and test saves made while checking the game
+zz-*
+test-*
+*-test.html

@@ -1,0 +1,14 @@
+{
+  "backgrounds": {
+    "meera_room_night": { "label": "Meera's room, night", "colour": "#2B2D5C", "episode": 1 },
+    "meera_room_day": { "label": "Meera's room, day", "colour": "#F6D58E", "episode": 1 },
+    "office": { "label": "Meera's workplace", "colour": "#A7C7D9", "episode": 1 },
+    "ammamma_home": { "label": "Ammamma's home", "colour": "#C98B4F", "episode": 1 },
+    "phone_backdrop": { "label": "Behind app screens", "colour": "#8C8C99", "episode": 1 },
+    "bazaarbox_desk": { "label": "Online shopping", "colour": "#E8B4A0", "episode": 2 },
+    "hospital": { "label": "CureWell Hospitals", "colour": "#D7EEF0", "episode": 3 },
+    "kabir_room": { "label": "Kabir's room", "colour": "#5A3E7A", "episode": 4 },
+    "neighbourhood": { "label": "Navpur street", "colour": "#E0C27A", "episode": 5 },
+    "board_office": { "label": "Data Protection Board", "colour": "#9FB3A8", "episode": 6 }
+  }
+}

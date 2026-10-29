@@ -1,0 +1,422 @@
+{
+  "id": "ep5",
+  "title": "Duties Too",
+  "startScene": "s1",
+  "shieldStart": 50,
+  "scenes": {
+    "s1": {
+      "title": "The Plan",
+      "panels": [
+        {
+          "id": "P1.1",
+          "description": "Navpur street, outside Lakshmi Stores. Mr. Rao, angry, waving his phone. SMS on screen.",
+          "background": "neighbourhood",
+          "characters": [
+            { "id": "rao", "expression": "angry" },
+            { "id": "meera", "expression": "neutral" }
+          ],
+          "appScreen": "lakshmi_offer_sms",
+          "lines": [
+            { "speaker": "rao", "text": "Every day, these messages! And they refused me credit last week." },
+            { "speaker": "meera", "text": "So what's the plan?" }
+          ]
+        },
+        {
+          "id": "P1.2",
+          "description": "Mr. Rao, happy, scheming.",
+          "background": "neighbourhood",
+          "characters": [
+            { "id": "rao", "expression": "happy" },
+            { "id": "meera", "expression": "surprised" }
+          ],
+          "lines": [
+            { "speaker": "rao", "text": "Ten complaints to the Data Protection Board. \"Lakshmi Stores leaked my data.\" One in my name, the rest in my cousin Suresh's name. They'll panic." },
+            { "speaker": "meera", "text": "Did they actually leak your data?" },
+            { "speaker": "rao", "text": "No. But they don't know that." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C1",
+        "options": [
+          { "id": "A", "label": "Help him fill in the complaints", "next": "s1a", "shield": -15, "setFlags": ["helped_false_complaint"], "removeOptionAfterUse": true },
+          { "id": "B", "label": "Tell him what he can really do", "next": "s2", "shield": 10, "setFlags": [] },
+          { "id": "C", "label": "Stay out of it", "next": "s1c", "shield": -5, "setFlags": [], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s1a": {
+      "title": "The Board Writes Back",
+      "panels": [
+        {
+          "id": "P1A.1",
+          "description": "Phone screen: a letter from the Data Protection Board to Mr. Rao.",
+          "background": "phone_backdrop",
+          "caption": "Six weeks later.",
+          "characters": [],
+          "appScreen": "board_letter",
+          "lines": []
+        },
+        {
+          "id": "P1A.2",
+          "description": "Mr. Rao, surprised. Nyay appears, worried.",
+          "background": "neighbourhood",
+          "characters": [
+            { "id": "rao", "expression": "surprised" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "rao", "text": "Costs? On ME?" },
+            { "speaker": "nyay", "text": "Citizens have duties too. A false complaint, or one in someone else's name, can cost you. The Board can also fine a person up to ₹10,000 for breaking these duties." }
+          ]
+        }
+      ],
+      "unlocks": ["CF24"],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s1c": {
+      "title": "Not My Problem",
+      "panels": [
+        {
+          "id": "P1C.1",
+          "description": "Phone screen: Meera gets a call from an unknown number.",
+          "background": "phone_backdrop",
+          "caption": "A week later.",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "suresh_call",
+          "lines": [
+            { "speaker": "meera", "text": "I should have said something." },
+            { "speaker": "nyay", "text": "Staying quiet let him use another person's name." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s2": {
+      "title": "Real Options",
+      "panels": [
+        {
+          "id": "P2.1",
+          "description": "Navpur street. Meera, neutral, with Mr. Rao, angry.",
+          "background": "neighbourhood",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "rao", "expression": "angry" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "You don't want the offers? That's a real complaint. Tell the shop, in your own name. You can take back your consent for the messages." },
+            { "speaker": "rao", "text": "And if I just make it sound worse?" }
+          ]
+        },
+        {
+          "id": "P2.2",
+          "description": "Nyay, neutral.",
+          "background": "neighbourhood",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "nyay", "text": "The law gives people duties as well as rights: follow the law, don't pretend to be someone else, don't hide facts when you apply for government IDs, don't file false or frivolous complaints, and give only true details when you ask for a correction." }
+          ]
+        }
+      ],
+      "unlocks": ["CF23"],
+      "choice": {
+        "id": "C2",
+        "options": [
+          { "id": "C2a", "label": "Mr. Rao writes to Lakshmi Stores in his own name, withdrawing consent for the offers", "next": "s3", "shield": 10, "setFlags": [] },
+          { "id": "C2b", "label": "Mr. Rao asks the shop to \"correct\" his number to Suresh's, so the offers go there", "next": "s2b", "shield": -10, "setFlags": [], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s2b": {
+      "title": "Not a Correction",
+      "panels": [
+        {
+          "id": "P2B.1",
+          "description": "Phone screen: Rao's message to Lakshmi Stores. Nyay floats in front of it, worried.",
+          "background": "phone_backdrop",
+          "caption": "That's Suresh's number.",
+          "characters": [
+            { "id": "rao", "expression": "worried" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "appScreen": "rao_correction_request",
+          "lines": [
+            { "speaker": "nyay", "text": "Correction means fixing what's wrong, with true details. Putting in someone else's number isn't a correction." },
+            { "speaker": "rao", "text": "Fine, fine." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s2"
+    },
+
+    "s3": {
+      "title": "Quiet at Last",
+      "panels": [
+        {
+          "id": "P3.1",
+          "description": "Phone screen: Lakshmi Stores' reply.",
+          "background": "phone_backdrop",
+          "caption": "Two days later.",
+          "characters": [],
+          "appScreen": "lakshmi_reply",
+          "lines": []
+        },
+        {
+          "id": "P3.2",
+          "description": "Navpur street. Mr. Rao, happy.",
+          "background": "neighbourhood",
+          "characters": [
+            { "id": "rao", "expression": "happy" },
+            { "id": "meera", "expression": "happy" }
+          ],
+          "lines": [
+            { "speaker": "rao", "text": "That was easy. No cousin needed." },
+            { "speaker": "meera", "text": "And no costs either." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "next": "s4"
+    },
+
+    "s4": {
+      "title": "Who Speaks for Me?",
+      "panels": [
+        {
+          "id": "P4.1",
+          "description": "Ammamma's home. Ammamma, neutral, with Meera.",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "ammamma", "expression": "neutral" },
+            { "id": "meera", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "ammamma", "text": "After the hospital business, I've been thinking. One day I may not manage these things myself. Who will, then?" },
+            { "speaker": "meera", "text": "You can choose someone. It's called nominating." }
+          ]
+        },
+        {
+          "id": "P4.2",
+          "description": "Phone screen: CureWell's Privacy Centre. Fields: nominee's name, relationship, phone.",
+          "background": "ammamma_home",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "appScreen": "curewell_nominate",
+          "lines": [
+            { "speaker": "nyay", "text": "A nominee steps in only if Ammamma dies, or can't act because of illness of mind or body. Until then, it's still her call." }
+          ]
+        }
+      ],
+      "unlocks": ["CF25"],
+      "choice": {
+        "id": "C3",
+        "options": [
+          { "id": "C3a", "label": "Ammamma nominates Meera through the Privacy Centre", "next": "s5", "shield": 10, "setFlags": ["nominated"] },
+          { "id": "C3b", "label": "Ammamma just gives Meera her passwords instead", "next": "s4b", "shield": -10, "setFlags": [], "removeOptionAfterUse": true },
+          { "id": "C3c", "label": "Not now", "next": "s5", "shield": 0, "setFlags": [] }
+        ]
+      }
+    },
+
+    "s4b": {
+      "title": "Not the Same Thing",
+      "panels": [
+        {
+          "id": "P4B.1",
+          "description": "Ammamma, happy, holding out a notebook of passwords. Nyay, worried.",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "ammamma", "expression": "worried" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "nyay", "text": "Sharing passwords isn't nominating. It gives Meera no legal right, and it puts every one of Ammamma's accounts at risk." },
+            { "speaker": "ammamma", "text": "Then let's do it properly." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s4"
+    },
+
+    "s5": {
+      "title": "Last Call",
+      "panels": [
+        {
+          "id": "P5.1",
+          "description": "Meera's room by day. Meera, worried, looking at her calendar. The note is marked: two months ago.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "grievance_reminder",
+          "lines": [
+            { "speaker": "meera", "text": "Thirty days, they said. Not a word." },
+            { "speaker": "nyay", "text": "Then you've given the company its chance. It's time for the Board." }
+          ]
+        },
+        {
+          "id": "P5.2",
+          "description": "Teaser card.",
+          "background": "meera_room_day",
+          "characters": [],
+          "appScreen": "episode6_teaser",
+          "lines": []
+        }
+      ],
+      "unlocks": [],
+      "next": "ending"
+    }
+  },
+
+  "appScreens": {
+    "lakshmi_offer_sms": { "type": "sms", "sender": "Lakshmi Stores", "text": "Diwali offer! 20% off sweets!" },
+    "board_letter": { "type": "email", "from": "Data Protection Board", "body": "The Board finds your complaint against Lakshmi Stores to be false: there was no data breach. The Board has issued a warning and imposed costs on you. Filing complaints in another person's name also goes against your duties under the Act." },
+    "suresh_call": { "type": "call", "caller": "unknown number", "text": "This is Suresh, Rao's cousin. Someone filed complaints with the Data Protection Board in MY name. Do you know anything?" },
+    "rao_correction_request": {
+      "type": "sms",
+      "sender": "Lakshmi Stores",
+      "messages": [{ "mine": true, "text": "Please correct my phone number to 98XXX XXXXX." }]
+    },
+    "lakshmi_reply": { "type": "sms", "sender": "Lakshmi Stores", "text": "Done, Mr. Rao. No more offers. Your loyalty points are still there if you want them." },
+    "curewell_nominate": {
+      "type": "fields",
+      "app": "CureWell",
+      "text": "Nominate a person who can use your data rights if you pass away or can no longer act for yourself.",
+      "fields": ["nominee's name", "relationship", "phone"]
+    },
+    "grievance_reminder": { "type": "calendar", "time": "two months ago", "calendar": "QuickPaisa grievance sent. Reply promised within 30 days." },
+    "episode6_teaser": { "type": "teaser", "text": "Episode 6: The Board. Meera takes QuickPaisa to the Data Protection Board." }
+  },
+
+  "scans": {
+    "CS20": {
+      "mode": "both",
+      "afterScenes": ["s1a"],
+      "question": "Do ordinary people have any duties under India's data protection law?",
+      "options": ["No, only companies do", "Yes, such as not filing false complaints or pretending to be someone else"],
+      "correct": 1,
+      "explanation": "Breaking these duties can lead to a warning, costs, or a fine of up to ₹10,000."
+    },
+    "LS21": {
+      "mode": "law",
+      "afterScenes": ["s1a"],
+      "question": "Mr. Rao filed a false complaint in his own name and others in his cousin's name. What can follow?",
+      "shortAnswerOptions": ["Nothing, because only Data Fiduciaries have duties", "A warning or costs, and a penalty of up to ₹10,000 for breaching s. 15"],
+      "correct": 1,
+      "modelAnswer": "s. 15(b) bars impersonating another person while providing personal data, and s. 15(d) bars registering a false or frivolous grievance or complaint with a Data Fiduciary or the Board. Under s. 28(12), at any stage after receiving a complaint, the Board may issue a warning or impose costs on a complainant whose complaint is false or frivolous. Breach of s. 15 duties also carries a penalty of up to ₹10,000 (Schedule item 5), which the Board may impose under s. 33 after an inquiry finds the breach significant."
+    },
+    "CS21": {
+      "mode": "both",
+      "afterScenes": ["s2"],
+      "question": "Mr. Rao keeps getting offers he never wanted from a shop's app. What's the right first step?",
+      "options": ["Complain to the Board in his cousin's name", "Ask the shop, in his own name, to stop", "Exaggerate the problem so they take it seriously"],
+      "correct": 1,
+      "explanation": "Take back your consent and tell the company first, honestly and as yourself."
+    },
+    "LS22": {
+      "mode": "law",
+      "afterScenes": ["s2"],
+      "question": "Which of these is NOT a duty of a Data Principal under s. 15?",
+      "shortAnswerOptions": ["Not suppressing material information when applying for a State-issued ID or proof of address", "Not filing false or frivolous complaints", "Reading every privacy notice before consenting"],
+      "correct": 2,
+      "modelAnswer": "s. 15 lists five duties: (a) comply with all applicable laws while exercising rights; (b) not impersonate another person while providing personal data; (c) not suppress material information when providing personal data for a document, unique identifier, proof of identity or proof of address issued by the State; (d) not register a false or frivolous grievance or complaint; and (e) furnish only verifiably authentic information when exercising the right to correction or erasure. There is no duty to read notices; the burden of a clear notice is on the fiduciary (s. 5, Rule 3)."
+    },
+    "LS23": {
+      "mode": "law",
+      "afterScenes": ["s2b"],
+      "question": "Mr. Rao asks the shop to \"correct\" his phone number to his cousin's. Is that a valid correction request?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. s. 12(2) obliges the fiduciary to correct inaccurate or misleading data, complete incomplete data and update data. Rao's number isn't wrong, and substituting another person's number isn't a correction. s. 15(e) requires a Data Principal to furnish only verifiably authentic information when exercising the right to correction, and using a third person's details also engages s. 15(b)."
+    },
+    "CS22": {
+      "mode": "both",
+      "afterScenes": ["s4"],
+      "question": "What does nominating someone do?",
+      "options": ["Lets them read your messages and accounts right away", "Lets them use your data rights if you die or can no longer act for yourself", "Nothing. Only lawyers can act for you"],
+      "correct": 1,
+      "explanation": "A nominee steps in only on death or incapacity. Sharing passwords is not the same thing."
+    },
+    "LS24": {
+      "mode": "law",
+      "afterScenes": ["s4"],
+      "question": "Ammamma nominates Meera. When can Meera exercise Ammamma's rights?",
+      "shortAnswerOptions": ["Whenever Ammamma is busy", "Only if Ammamma dies or becomes unable to exercise her rights because of unsoundness of mind or infirmity of body"],
+      "correct": 1,
+      "modelAnswer": "s. 14(1) lets a Data Principal nominate any other individual to exercise her rights in the event of her death or incapacity. s. 14(2) defines incapacity as inability to exercise those rights due to unsoundness of mind or infirmity of body. Under Rule 14(4), she may nominate one or more individuals using the means and particulars the Data Fiduciary requires, in line with its terms of service and applicable law."
+    }
+  },
+
+  "caseFiles": {
+    "CF23": {
+      "title": "Your duties",
+      "plain": "Follow the law, don't pretend to be someone else, don't hide facts for government IDs, don't file false or frivolous complaints, and give only true details when you ask for corrections.",
+      "law": "s. 15(a)–(e)",
+      "inForce": ""
+    },
+    "CF24": {
+      "title": "False complaints cost you",
+      "plain": "The Board can warn you or make you pay costs for a false or frivolous complaint, and fine you up to ₹10,000 for breaking your duties.",
+      "law": "s. 28(12); s. 33; Schedule item 5",
+      "inForce": ""
+    },
+    "CF25": {
+      "title": "Choosing a nominee",
+      "plain": "You can choose someone to use your data rights if you die or can no longer act for yourself because of illness of mind or body.",
+      "law": "s. 14; Rule 14(4)",
+      "inForce": "13 May 2027"
+    }
+  },
+
+  "endings": [
+    {
+      "id": "costly",
+      "title": "A costly lesson",
+      "requires": ["helped_false_complaint"],
+      "caption": "Mr. Rao got his offers stopped in the end, but only after the Board warned him and made him pay costs.",
+      "characters": [{ "id": "nyay", "expression": "neutral" }],
+      "lines": [{ "speaker": "nyay", "text": "Rights come with duties. A false complaint wastes the Board's time and can cost you." }]
+    },
+    {
+      "id": "neighbours",
+      "title": "Good neighbours",
+      "requires": ["nominated"],
+      "caption": "Mr. Rao's messages have stopped, and Ammamma has named Meera to speak for her data if she ever can't.",
+      "characters": [{ "id": "nyay", "expression": "happy" }],
+      "lines": [{ "speaker": "nyay", "text": "Honest complaints, and a plan for the future. That's using the law well." }]
+    },
+    {
+      "id": "unfinished",
+      "title": "Unfinished business",
+      "requires": [],
+      "requiresMissing": ["helped_false_complaint", "nominated"],
+      "caption": "Mr. Rao's messages have stopped, but Ammamma hasn't named anyone yet.",
+      "characters": [],
+      "lines": [],
+      "card": {
+        "title": "What Ammamma could still do",
+        "items": [
+          "Nominate someone through each company's own process.",
+          "Choose someone she trusts.",
+          "Never share passwords as a shortcut."
+        ]
+      }
+    }
+  ],
+
+  "badges": [
+    { "id": "rights_unlocked_nomination", "title": "Rights Unlocked: Nomination", "requiresFlag": "nominated" },
+    { "id": "good_citizen", "title": "Good Citizen", "requiresMissing": ["helped_false_complaint"], "requiresSceneNotVisited": "s2b" }
+  ]
+}

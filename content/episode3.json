@@ -1,0 +1,522 @@
+{
+  "id": "ep3",
+  "title": "The Leak",
+  "startScene": "s1",
+  "shieldStart": 50,
+  "scenes": {
+    "s1": {
+      "title": "The Strange Message",
+      "panels": [
+        {
+          "id": "P1.1",
+          "description": "Ammamma's home. Ammamma, worried, holding out her phone to Meera. SMS from \"CureWell Billing\".",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "ammamma", "expression": "worried" },
+            { "id": "meera", "expression": "worried" }
+          ],
+          "appScreen": "scam_sms",
+          "lines": [
+            { "speaker": "ammamma", "text": "It knows my tablets, molay. It must be the hospital." },
+            { "speaker": "meera", "text": "It knows a lot. That's what worries me." }
+          ]
+        },
+        {
+          "id": "P1.2",
+          "description": "Nyay appears beside the phone, worried.",
+          "background": "ammamma_home",
+          "characters": [{ "id": "nyay", "expression": "worried" }],
+          "lines": [
+            { "speaker": "nyay", "text": "Real details make a message feel genuine. They don't prove it is." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C1",
+        "options": [
+          { "id": "A", "label": "Pay it, just in case", "next": "s1a", "shield": -15, "setFlags": [], "removeOptionAfterUse": true },
+          { "id": "B", "label": "Call CureWell on the number printed on Ammamma's hospital card", "next": "s2", "shield": 10, "setFlags": [] },
+          { "id": "C", "label": "Reply to the SMS and ask if it's genuine", "next": "s1c", "shield": -5, "setFlags": [], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s1a": {
+      "title": "Wait!",
+      "panels": [
+        {
+          "id": "P1A.1",
+          "description": "Close-up: Ammamma's thumb over \"Pay now\". Meera grabs the phone, surprised.",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "appScreen": "scam_sms",
+          "lines": [
+            { "speaker": "meera", "text": "Wait! Don't tap that." },
+            { "speaker": "nyay", "text": "Never pay through a link in a message. If money has already gone, call 1930 or report it at cybercrime.gov.in straight away." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s1c": {
+      "title": "Thirty Minutes",
+      "panels": [
+        {
+          "id": "P1C.1",
+          "description": "Phone screen. Meera's reply and the answer.",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "angry" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "scam_reply",
+          "lines": [
+            { "speaker": "meera", "text": "Thirty minutes now?" },
+            { "speaker": "nyay", "text": "Rushing you is the oldest trick. Asking the sender proves nothing. Check through a number you already trust." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s2": {
+      "title": "Silence at CureWell",
+      "panels": [
+        {
+          "id": "P2.1",
+          "description": "Hospital reception. Meera on the phone, neutral. CureWell helpline.",
+          "background": "hospital",
+          "characters": [{ "id": "meera", "expression": "neutral" }],
+          "appScreen": "curewell_helpline",
+          "lines": [
+            { "speaker": "meera", "text": "Then how did a scammer get her prescriptions?" }
+          ]
+        },
+        {
+          "id": "P2.2",
+          "description": "Phone screen: a news headline.",
+          "background": "phone_backdrop",
+          "caption": "Today: 15 July.",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "news_headline",
+          "lines": [
+            { "speaker": "meera", "text": "Six days. And nobody told Ammamma?" },
+            { "speaker": "nyay", "text": "Once a company knows its data has leaked, it must tell everyone affected, and the Data Protection Board, without delay." }
+          ]
+        }
+      ],
+      "unlocks": ["CF14", "CF15"],
+      "choice": {
+        "id": "C2",
+        "options": [
+          { "id": "C2a", "label": "Post the scam SMS and the news on social media, tagging CureWell", "next": "s2a", "shield": -10, "setFlags": ["posted_publicly"], "removeOptionAfterUse": true },
+          { "id": "C2b", "label": "Write to CureWell's Data Protection Officer, using the contact on its website", "next": "s3", "shield": 10, "setFlags": [] }
+        ]
+      }
+    },
+
+    "s2a": {
+      "title": "Shared Too Widely",
+      "panels": [
+        {
+          "id": "P2A.1",
+          "description": "Meera's post with hundreds of shares. Zoomed in: the screenshot shows Ammamma's name and medicines.",
+          "background": "phone_backdrop",
+          "characters": [],
+          "appScreen": "meera_post",
+          "lines": []
+        },
+        {
+          "id": "P2A.2",
+          "description": "Ammamma's home. Ammamma, worried, on a call.",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "ammamma", "expression": "worried" },
+            { "id": "nyay", "expression": "worried" },
+            { "id": "meera", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "ammamma", "text": "Molay, my cousin in Dubai saw my tablets on the internet!" },
+            { "speaker": "nyay", "text": "Your post put Ammamma's details in front of even more people. Pushing CureWell is fair. Spreading her data isn't." },
+            { "speaker": "meera", "text": "I'll take it down." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s2"
+    },
+
+    "s3": {
+      "title": "The Notice",
+      "panels": [
+        {
+          "id": "P3.1",
+          "description": "Phone screen: CureWell's message to Ammamma.",
+          "background": "phone_backdrop",
+          "caption": "Next morning.",
+          "characters": [],
+          "appScreen": "breach_notice",
+          "lines": []
+        },
+        {
+          "id": "P3.2",
+          "description": "Ammamma's home. Meera reading, neutral; Ammamma beside her, worried.",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "ammamma", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "It says everything it should. Just six days late." },
+            { "speaker": "nyay", "text": "And that last line? MediStack did the work. CureWell still answers for it." }
+          ]
+        }
+      ],
+      "unlocks": ["CF16"],
+      "choice": {
+        "id": "C3",
+        "options": [
+          { "id": "C3a", "label": "Save the notice and write to the DPO asking exactly which of Ammamma's records were exposed", "next": "s4", "shield": 10, "setFlags": ["kept_evidence_ep3", "asked_for_details"] },
+          { "id": "C3b", "label": "Save the notice", "next": "s4", "shield": 5, "setFlags": ["kept_evidence_ep3"] },
+          { "id": "C3c", "label": "Delete it. It's over now", "next": "s4", "shield": -5, "setFlags": [] }
+        ]
+      }
+    },
+
+    "s4": {
+      "title": "Behind the Firewall",
+      "panels": [
+        {
+          "id": "P4.1",
+          "description": "Office. Arjun at his desk, neutral.",
+          "background": "office",
+          "characters": [
+            { "id": "arjun", "expression": "neutral" },
+            { "id": "meera", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "arjun", "text": "We ran a breach drill at work last month. Lock it down, tell the Board straight away, send the Board a full report within 72 hours, and tell every affected user without delay." },
+            { "speaker": "meera", "text": "Could CureWell have stopped this?" }
+          ]
+        },
+        {
+          "id": "P4.2",
+          "description": "Arjun, happy, counting on his fingers.",
+          "background": "office",
+          "characters": [
+            { "id": "arjun", "expression": "happy" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "arjun", "text": "There are minimum safeguards. Encrypt the data. Control who can get in. Keep access logs and actually check them. Keep backups. And put security terms in the vendor's contract." },
+            { "speaker": "nyay", "text": "An open folder of readable records fails more than one of those." }
+          ]
+        }
+      ],
+      "unlocks": ["CF17"],
+      "next": "s5"
+    },
+
+    "s5": {
+      "title": "Who Pays?",
+      "panels": [
+        {
+          "id": "P5.0",
+          "description": "Only if asked_for_details. Phone screen: the DPO's reply.",
+          "showIfFlag": "asked_for_details",
+          "background": "ammamma_home",
+          "characters": [{ "id": "meera", "expression": "neutral" }],
+          "appScreen": "dpo_reply",
+          "lines": [
+            { "speaker": "meera", "text": "At least we know exactly what's out there." }
+          ]
+        },
+        {
+          "id": "P5.1",
+          "description": "Ammamma's home. Ammamma, neutral, with a cup of tea.",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "ammamma", "expression": "neutral" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "ammamma", "text": "Will anyone pay me for all this worry?" },
+            { "speaker": "nyay", "text": "The Board can fine CureWell up to ₹250 crore for weak security, and up to ₹200 crore for telling people late. But that money goes to the government." }
+          ]
+        },
+        {
+          "id": "P5.2",
+          "description": "Meera, surprised.",
+          "background": "ammamma_home",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "So Ammamma gets nothing?" },
+            { "speaker": "nyay", "text": "She gets answers and safer systems. And once CureWell reported the breach, the Board can order it to fix things fast." }
+          ]
+        }
+      ],
+      "unlocks": ["CF18"],
+      "next": "s6"
+    },
+
+    "s6": {
+      "title": "Next Time",
+      "panels": [
+        {
+          "id": "P6.1",
+          "description": "Meera's room by day. Phone rings: Kabir, neutral.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "kabir", "expression": "neutral" },
+            { "id": "meera", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "kabir", "text": "Didi, PlayVerse won't let me sign up without a parent saying yes. Can you be my parent?" },
+            { "speaker": "meera", "text": "Kabir. No." }
+          ]
+        },
+        {
+          "id": "P6.2",
+          "description": "Teaser card.",
+          "background": "meera_room_day",
+          "characters": [],
+          "appScreen": "episode4_teaser",
+          "lines": []
+        }
+      ],
+      "unlocks": [],
+      "next": "ending"
+    }
+  },
+
+  "appScreens": {
+    "scam_sms": {
+      "type": "sms",
+      "sender": "CureWell Billing",
+      "text": "Dear patient Saraswathi, your insurance claim for Metformin and Amlodipine was rejected. Pay ₹4,999 within 1 hour or your treatment will stop:",
+      "link": "Pay now"
+    },
+    "scam_reply": {
+      "type": "sms",
+      "sender": "CureWell Billing",
+      "messages": [
+        { "mine": true, "text": "Is this really CureWell?" },
+        { "mine": false, "text": "Yes madam, 100% genuine. Pay in 30 minutes or treatment stops." }
+      ]
+    },
+    "curewell_helpline": {
+      "type": "call",
+      "caller": "CureWell helpline",
+      "text": "Madam, we never ask for payment by SMS. That message is fraud. But we are not aware of any data problem."
+    },
+    "news_headline": {
+      "type": "news",
+      "text": "Navpur hospital chain's patient records found exposed online. The security researcher who found them says she alerted the hospital on 9 July."
+    },
+    "meera_post": {
+      "type": "post",
+      "author": "Meera",
+      "tag": "CureWell",
+      "embed": {
+        "sender": "CureWell Billing",
+        "text": "Dear patient Saraswathi, your insurance claim for Metformin and Amlodipine was rejected. Pay ₹4,999 within 1 hour or your treatment will stop:"
+      }
+    },
+    "breach_notice": {
+      "type": "sections",
+      "app": "CureWell",
+      "title": "Important: a data breach affecting your records.",
+      "sections": [
+        { "heading": "What happened:", "text": "Between 2 and 9 July 2027, a storage folder at MediStack, the company that hosts our patient records, was left open online. It held the names, phone numbers, appointment dates and prescription details of about 18,000 patients, including yours. We learned of it on 9 July." },
+        { "heading": "What this may mean for you:", "text": "You may get fake messages or calls that use your details to ask for money." },
+        { "heading": "What we have done:", "text": "MediStack locked the folder on 9 July. We have tightened who can access our records, and we have informed the Data Protection Board." },
+        { "heading": "What you can do:", "text": "CureWell will never ask you to pay through an SMS link. Call us only on the number on your hospital card. If you lose money, call 1930 or report it at cybercrime.gov.in." },
+        { "heading": "Questions:", "text": "Data Protection Officer, dpo@curewell.example." },
+        { "heading": "Please note:", "text": "this breach happened at MediStack, our vendor, not at CureWell." }
+      ]
+    },
+    "dpo_reply": {
+      "type": "email",
+      "from": "CureWell",
+      "body": "For Mrs Saraswathi, the exposed records were: name, phone number, two appointment dates and her prescription list. No payment or ID details were included. Questions: dpo@curewell.example."
+    },
+    "episode4_teaser": { "type": "teaser", "text": "Episode 4: Under 18. Who decides what Kabir shares?" }
+  },
+
+  "scans": {
+    "CS11": {
+      "mode": "both",
+      "afterScenes": ["s1a"],
+      "question": "A message names your real medicines and asks you to pay. Does that prove it's from your hospital?",
+      "options": ["Yes, only the hospital would know that", "No"],
+      "correct": 1,
+      "explanation": "Leaked data makes scams look real. Check through a number you already trust, and if you lose money, call 1930 or report at cybercrime.gov.in."
+    },
+    "LS12": {
+      "mode": "law",
+      "afterScenes": ["s2"],
+      "question": "A researcher alerted CureWell on 9 July. By 15 July, no patient has been told. Is CureWell in breach of its intimation duty?",
+      "shortAnswerOptions": ["Yes", "No, it has 72 hours", "No, it only has to tell the Board"],
+      "correct": 0,
+      "modelAnswer": "Yes. The open folder is a \"personal data breach\" under s. 2(u), which covers accidental disclosure or loss of access, not just proven misuse. s. 8(6) requires intimation to the Board and each affected Data Principal. Rule 7(1) requires CureWell, on becoming aware, to tell each affected patient without delay, to the best of its knowledge. The 72 hours in Rule 7(2)(b) apply only to the detailed report to the Board, and Rule 7(2)(a) requires an initial report to the Board without delay. Failing to give notice falls under Schedule item 2: up to ₹200 crore."
+    },
+    "CS12": {
+      "mode": "both",
+      "afterScenes": ["s2a"],
+      "question": "Meera posted screenshots showing Ammamma's medicines to shame the hospital. Was that a good idea?",
+      "options": ["Yes, public pressure works", "No, it spread Ammamma's details even further"],
+      "correct": 1,
+      "explanation": "Push the company through its Data Protection Officer or grievance contact, not by sharing the person's data."
+    },
+    "CS13": {
+      "mode": "both",
+      "afterScenes": ["s3"],
+      "question": "After a breach, the company's message to you must include:",
+      "options": ["Just an apology", "What happened, how it could affect you, what they're doing, what you can do, and who to contact", "Nothing. Companies only have to tell the government"],
+      "correct": 1,
+      "explanation": "You must be told all of this clearly, in plain language, without delay."
+    },
+    "LS13": {
+      "mode": "law",
+      "afterScenes": ["s3"],
+      "question": "CureWell's notice says the breach was MediStack's fault. Does that shift legal responsibility to MediStack?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. Under s. 8(1) the Data Fiduciary is responsible for compliance, irrespective of any agreement to the contrary, for processing done by it or on its behalf by a Data Processor. s. 8(5) requires safeguards covering processing by its processors, s. 8(2) allows processors only under a valid contract, and Rule 6(1)(f) requires that contract to provide for reasonable security safeguards. CureWell may have a contractual claim against MediStack, but it answers to the Board."
+    },
+    "LS14": {
+      "mode": "law",
+      "afterScenes": ["s3"],
+      "question": "Leaving timing aside, does the content of CureWell's notice meet Rule 7(1)?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 0,
+      "modelAnswer": "Yes. Rule 7(1) requires, in concise, clear and plain language: (a) a description of the breach, including its nature, extent and timing; (b) likely consequences for her; (c) mitigation measures taken or being taken; (d) safety measures she can take; and (e) contact details of someone who can answer her questions. The notice covers all five, and was sent to her registered phone. Its weakness is timing (see LS12) and the misleading line about responsibility (see LS13)."
+    },
+    "CS14": {
+      "mode": "both",
+      "afterScenes": ["s4"],
+      "question": "After discovering a breach, how long does a company have to give the Data Protection Board the full details?",
+      "options": ["30 days", "72 hours", "There's no deadline"],
+      "correct": 1,
+      "explanation": "It must alert the Board straight away, then send the full report within 72 hours."
+    },
+    "LS15": {
+      "mode": "law",
+      "afterScenes": ["s4"],
+      "question": "Which minimum safeguards in Rule 6(1) bear most directly on a storage folder left open online?",
+      "shortAnswerOptions": ["Encryption, access control and access logging", "A privacy policy on the website", "Verifiable parental consent"],
+      "correct": 0,
+      "modelAnswer": "Rule 6(1) sets minimums: (a) encryption, obfuscation, masking or virtual tokens; (b) access control over computer resources; (c) logs, monitoring and review to detect unauthorised access; (d) backups for continued processing; (e) keeping logs and personal data for one year for detection and investigation; (f) security terms in the processor contract; and (g) technical and organisational measures. Readable records in an open folder suggest failures of (a), (b) and (c). Under Rule 7(2)(b), the detailed report to the Board is due within 72 hours of becoming aware, or longer if the Board allows it on a written request. Failing to take reasonable safeguards under s. 8(5) is Schedule item 1: up to ₹250 crore."
+    },
+    "CS15": {
+      "mode": "both",
+      "afterScenes": ["s5"],
+      "question": "If the Board fines CureWell, who gets the money?",
+      "options": ["Ammamma and the other patients", "The government", "MediStack"],
+      "correct": 1,
+      "explanation": "Penalties go to the government. The DPDP Act doesn't pay compensation to the people affected."
+    },
+    "LS16": {
+      "mode": "law",
+      "afterScenes": ["s5"],
+      "question": "Ammamma's leaked records include her prescriptions. Does the DPDP Act give health data extra protection as a special category?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. Unlike GDPR Art. 9, the DPDP Act has no separate category of sensitive personal data. But when setting a penalty, the Board must consider \"the type and nature of the personal data affected\" (s. 33(2)(b)), along with the other s. 33(2) factors. On receiving CureWell's breach intimation, the Board can direct urgent remedial or mitigation measures and inquire (s. 27(1)(a)). Penalties go to the Consolidated Fund of India (s. 34); the Act gives the patient no compensation. s. 44(2)(a) of the Act also omits s. 43A of the IT Act, the old compensation route for negligent security, once that provision is in force."
+    }
+  },
+
+  "caseFiles": {
+    "CF14": {
+      "title": "What counts as a breach",
+      "plain": "Any leak, loss, or unauthorised use of your data counts, even by accident and even if no one has misused it yet.",
+      "law": "s. 2(u)",
+      "inForce": ""
+    },
+    "CF15": {
+      "title": "You must be told",
+      "plain": "After a breach, the company must tell you what happened, how it affects you, what it's doing, what you can do, and who to contact, without delay.",
+      "law": "s. 8(6); Rule 7(1)",
+      "inForce": "13 May 2027",
+      "help": {
+        "title": "Real-world help",
+        "text": "If you lose money to a scam, call the National Cyber Crime Helpline on 1930 or report it at cybercrime.gov.in",
+        "source": "Ministry of Home Affairs",
+        "url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2022-pdfs/RS06042022/3908.pdf"
+      }
+    },
+    "CF16": {
+      "title": "Blaming the vendor",
+      "plain": "A company is responsible for its vendors. If a vendor leaks your data, the company still answers for it.",
+      "law": "s. 8(1), 8(2), 8(5); Rule 6(1)(f)",
+      "inForce": "13 May 2027 (Rule 6)"
+    },
+    "CF17": {
+      "title": "Locks, logs and 72 hours",
+      "plain": "Companies must encrypt data, control access, keep and check logs, and keep backups. After a breach, they must alert the Board at once and report fully within 72 hours.",
+      "law": "s. 8(5); Rule 6(1); Rule 7(2)",
+      "inForce": "13 May 2027"
+    },
+    "CF18": {
+      "title": "Penalties, not payouts",
+      "plain": "Fines can reach ₹250 crore for weak security and ₹200 crore for late notice. The money goes to the government, not to you.",
+      "law": "s. 27(1)(a), 33(2), 34; Schedule items 1 and 2",
+      "inForce": ""
+    }
+  },
+
+  "endings": [
+    {
+      "id": "shared",
+      "title": "Shared too widely",
+      "requires": ["posted_publicly"],
+      "caption": "CureWell is fixing its systems, but Meera's post spread Ammamma's details further.",
+      "characters": [{ "id": "nyay", "expression": "worried" }],
+      "lines": [{ "speaker": "nyay", "text": "Next time, push the company, not the person's data." }],
+      "card": {
+        "title": "What to do instead",
+        "items": [
+          "Check messages through a number you already trust.",
+          "Write to the company's Data Protection Officer.",
+          "Keep the breach notice.",
+          "If money is lost, call 1930 or report at cybercrime.gov.in."
+        ]
+      }
+    },
+    {
+      "id": "well",
+      "title": "Well handled",
+      "requires": ["kept_evidence_ep3"],
+      "caption": "Ammamma is safe from the scam, and Meera has CureWell's breach notice saved.",
+      "characters": [{ "id": "nyay", "expression": "happy" }],
+      "lines": [{ "speaker": "nyay", "text": "You checked, you asked, and you kept the proof. If CureWell drags its feet, you're ready for the Board." }]
+    },
+    {
+      "id": "loose",
+      "title": "Loose ends",
+      "requires": [],
+      "requiresMissing": ["posted_publicly", "kept_evidence_ep3"],
+      "characters": [{ "id": "nyay", "expression": "neutral" }],
+      "lines": [{ "speaker": "nyay", "text": "Ammamma's safe. But without the notice, you'd have nothing to show the Board later." }]
+    }
+  ],
+
+  "badges": [
+    { "id": "scam_spotter", "title": "Scam Spotter", "requiresScene": "s2", "requiresSceneNotVisited": ["s1a", "s1c"] },
+    { "id": "rights_unlocked_breach_notice", "title": "Rights Unlocked: Breach Notice", "requiresScene": "s3" }
+  ]
+}

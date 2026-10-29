@@ -1,0 +1,85 @@
+{
+  "_note": "Text for the menus and buttons. Items marked DRAFT were written by Claude Code and approved by the script author on 29 Oct 2026; change them freely.",
+
+  "gameTitle": "Data Story",
+  "tagline": "Your data. Your rights. Your choices.",
+
+  "disclaimer": "Educational only, not legal advice. No personal data is collected.",
+
+  "about": {
+    "_status": "DRAFT",
+    "paragraphs": [
+      "Data Story is a comic you play. You make choices for Meera and her friends, and see how India's Digital Personal Data Protection Act, 2023 and the DPDP Rules, 2025 protect people's data.",
+      "The stories are set in 2027–28, after the main Rules apply. Characters, apps and companies are made up.",
+      "A student project by Abel A Joy, LL.M. (Data Privacy and IT Law), Manipal Academy of Higher Education, Bengaluru. Not legal advice. Not affiliated with the Government of India or the Data Protection Board of India.",
+      "This game collects no personal data. Your progress is saved only on this device, and you can wipe it below.",
+      "The site is hosted on GitHub Pages, which may log visitors' IP addresses as part of hosting.",
+      "Character art is AI-assisted.",
+      "Best played on a laptop or desktop."
+    ]
+  },
+
+  "modes": {
+    "_status": "DRAFT",
+    "citizen": {
+      "name": "Citizen",
+      "description": "Play the story and learn your data rights in plain language."
+    },
+    "law": {
+      "name": "Law Student",
+      "description": "The same story, plus legal questions with model answers and section citations."
+    }
+  },
+
+  "episodes": [
+    { "number": 1, "id": "ep1", "file": "content/episode1.json", "playable": true },
+    { "number": 2, "id": "ep2", "file": "content/episode2.json", "playable": true },
+    { "number": 3, "id": "ep3", "file": "content/episode3.json", "playable": true },
+    { "number": 4, "id": "ep4", "file": "content/episode4.json", "playable": true },
+    { "number": 5, "id": "ep5", "file": "content/episode5.json", "playable": true },
+    { "number": 6, "id": "ep6", "file": "content/episode6.json", "playable": true }
+  ],
+
+  "labels": {
+    "play": "Play",
+    "about": "About",
+    "back": "Back",
+    "understand": "I understand",
+    "chooseMode": "Choose your mode",
+    "episodes": "Episodes",
+    "episode": "Episode",
+    "comingSoon": "Coming soon",
+    "completed": "Completed",
+    "mode": "Mode",
+    "changeMode": "Change mode",
+    "continue": "Continue",
+    "tapToContinue": "Tap to continue",
+    "exit": "Exit",
+    "exitConfirm": "Leave this episode? Your choices in this playthrough will be lost.",
+    "dataShield": "Data Shield",
+    "caseFiles": "Case Files",
+    "noCaseFiles": "No Case Files yet. Keep playing to unlock them.",
+    "newCaseFile": "New Case File",
+    "theLaw": "The law",
+    "rulesApplyFrom": "Rules apply from",
+    "close": "Close",
+    "readScreen": "Read full screen",
+    "citizenScan": "Section Scan",
+    "lawScan": "Law Scan",
+    "correct": "Correct!",
+    "notQuite": "Not quite.",
+    "modelAnswer": "Model answer",
+    "citationPoint": "+1 citation point",
+    "whatNext": "What should Meera do?",
+    "theEnd": "The End",
+    "badges": "Badges",
+    "noBadges": "No badges this time.",
+    "citationScore": "Citation points",
+    "replay": "Replay",
+    "backToEpisodes": "Back to episodes",
+    "resetProgress": "Reset progress",
+    "resetConfirm": "Delete all saved progress on this device?",
+    "resetDone": "Progress reset.",
+    "storageOff": "Saving is switched off in this browser, so progress won't be kept after you close the page."
+  }
+}

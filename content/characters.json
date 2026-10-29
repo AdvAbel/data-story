@@ -1,0 +1,53 @@
+{
+  "expressions": ["neutral", "happy", "worried", "angry", "surprised"],
+  "characters": {
+    "meera": {
+      "name": "Meera",
+      "mainColour": "Mustard",
+      "colour": "#D4A017",
+      "neededForEp1": ["neutral", "happy", "worried", "angry", "surprised"]
+    },
+    "ammamma": {
+      "name": "Ammamma",
+      "mainColour": "Green",
+      "colour": "#2E7D32",
+      "neededForEp1": ["neutral", "worried"]
+    },
+    "arjun": {
+      "name": "Arjun",
+      "mainColour": "Navy",
+      "colour": "#1F2A5A",
+      "neededForEp1": ["neutral", "happy"]
+    },
+    "nyay": {
+      "name": "Nyay",
+      "mainColour": "Teal",
+      "colour": "#14A3A0",
+      "neededForEp1": ["neutral", "happy", "worried"]
+    },
+    "kabir": {
+      "name": "Kabir",
+      "mainColour": "Red",
+      "colour": "#D32F2F",
+      "neededForEp1": []
+    },
+    "rao": {
+      "name": "Mr. Rao",
+      "mainColour": "Brown",
+      "colour": "#795548",
+      "neededForEp1": []
+    },
+    "board_member": {
+      "_note": "Episode 6. Speaks only from hearing screens: a name tile, never a portrait.",
+      "name": "Board Member",
+      "colour": "#455A64",
+      "noPortrait": true
+    },
+    "qp_lawyer": {
+      "_note": "Episode 6. QuickPaisa's lawyer, on hearing screens only: a name tile, never a portrait.",
+      "name": "QuickPaisa's lawyer",
+      "colour": "#455A64",
+      "noPortrait": true
+    }
+  }
+}

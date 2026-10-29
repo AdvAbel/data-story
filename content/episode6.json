@@ -1,0 +1,960 @@
+{
+  "id": "ep6",
+  "title": "The Board",
+  "startScene": "s1",
+  "shieldStart": 50,
+
+  "_earlierFlags": "Flags read from the latest saved playthrough of earlier episodes. Used only to choose which panels show; missing counts as not set.",
+  "earlierFlags": {
+    "kept_evidence": "ep1",
+    "posted_publicly": "ep3",
+    "faked_age": "ep4",
+    "helped_false_complaint": "ep5",
+    "nominated": "ep5"
+  },
+
+  "storyCard": {
+    "title": "Your Data Story",
+    "notPlayed": "Not played yet",
+    "replay": "Replay Episode 6"
+  },
+
+  "scenes": {
+    "s1": {
+      "title": "Time's Up",
+      "panels": [
+        {
+          "id": "P1.1",
+          "description": "Meera's room by day. Meera, worried, holding her phone. Calendar note on screen.",
+          "background": "meera_room_day",
+          "caption": "November 2027.",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "grievance_calendar_note",
+          "lines": [
+            { "speaker": "meera", "text": "Four months. Not one reply." },
+            { "speaker": "nyay", "text": "You used QuickPaisa's own grievance process, and it didn't answer. Now you can go to the Data Protection Board." }
+          ]
+        },
+        {
+          "id": "P1.2",
+          "description": "If kept_evidence. Meera, happy, opens a folder on her laptop called \"QuickPaisa evidence\": her screenshots and her grievance email.",
+          "showIfFlag": "kept_evidence",
+          "background": "meera_room_day",
+          "characters": [{ "id": "meera", "expression": "happy" }],
+          "appScreen": "evidence_folder",
+          "lines": [
+            { "speaker": "meera", "text": "Good thing I saved everything." }
+          ]
+        },
+        {
+          "id": "P1.2",
+          "description": "If not kept_evidence. Meera, worried, scrolling her phone.",
+          "showIfNotFlag": "kept_evidence",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "I never saved any screenshots." },
+            { "speaker": "nyay", "text": "Your grievance email is still in your sent folder, and your friends still have the agent's messages. And remember, QuickPaisa has to prove your consent was valid, not you." }
+          ]
+        }
+      ],
+      "unlocks": ["CF26"],
+      "choice": {
+        "id": "C1",
+        "description": "How should Meera take this further?",
+        "options": [
+          { "id": "A", "label": "File a complaint with the Board online, with her grievance and evidence", "next": "s2", "shield": 10, "setFlags": [] },
+          { "id": "B", "label": "Post the agent's messages online and tag QuickPaisa", "next": "s1b", "shield": -10, "setFlags": ["took_shortcut"], "removeOptionAfterUse": true },
+          { "id": "C", "label": "Sue QuickPaisa in the local civil court", "next": "s1c", "shield": -5, "setFlags": ["took_shortcut"], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s1b": {
+      "title": "Not a Complaint",
+      "panels": [
+        {
+          "id": "P1B.1",
+          "description": "Phone screen: Meera's draft post, a screenshot of the agent's message with her friends' names and numbers showing. Nyay floats in front of it, worried.",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "nyay", "expression": "worried" }],
+          "appScreen": "draft_post",
+          "lines": [
+            { "speaker": "nyay", "text": "A post might embarrass QuickPaisa, but it isn't a complaint. And it would put your friends' names and numbers online." }
+          ]
+        },
+        {
+          "id": "P1B.2",
+          "description": "If posted_publicly (Episode 3). Meera, worried.",
+          "showIfFlag": "posted_publicly",
+          "background": "meera_room_day",
+          "characters": [{ "id": "meera", "expression": "worried" }],
+          "lines": [
+            { "speaker": "meera", "text": "Like Ammamma's hospital leak. I said I wouldn't do that again." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s1c": {
+      "title": "Wrong Door",
+      "panels": [
+        {
+          "id": "P1C.1",
+          "description": "Phone screen: a search. Nyay, neutral.",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "appScreen": "civil_court_search",
+          "lines": [
+            { "speaker": "nyay", "text": "A civil court can't hear a case the Board has the power to deal with. For this, the Board is the right place." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s2": {
+      "title": "Complaint Filed",
+      "panels": [
+        {
+          "id": "P2.1",
+          "description": "Phone screen: the Data Protection Board's online complaint form, filled in. Button: \"Submit\".",
+          "background": "phone_backdrop",
+          "characters": [],
+          "appScreen": "board_complaint_form",
+          "lines": []
+        },
+        {
+          "id": "P2.2",
+          "description": "Phone screen: a message from the Board.",
+          "background": "phone_backdrop",
+          "caption": "Two weeks later.",
+          "characters": [{ "id": "nyay", "expression": "happy" }],
+          "appScreen": "board_received",
+          "lines": [
+            { "speaker": "nyay", "text": "The Board works as a digital office. It can summon people, question them on oath, and make QuickPaisa hand over its records." }
+          ]
+        },
+        {
+          "id": "P2.3",
+          "description": "If helped_false_complaint (Episode 5). Meera, worried.",
+          "showIfFlag": "helped_false_complaint",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "After Mr. Rao's fake complaints, will they even believe me?" },
+            { "speaker": "nyay", "text": "Every complaint stands on its own facts, and yours are true." }
+          ]
+        }
+      ],
+      "unlocks": ["CF27"],
+      "next": "s3"
+    },
+
+    "s3": {
+      "title": "Mediation",
+      "panels": [
+        {
+          "id": "P3.1",
+          "description": "Board office. Hearing screen with three tiles.",
+          "background": "board_office",
+          "caption": "December 2027. The Board thinks this complaint might be settled by mediation and has asked both sides to try. They've agreed on a mediator.",
+          "characters": [],
+          "appScreen": "hearing_mediation",
+          "lines": [
+            { "speaker": "qp_lawyer", "text": "We'll delete Ms. Meera's contacts list. Nothing more. Everything else we did was lawful." }
+          ]
+        },
+        {
+          "id": "P3.2",
+          "description": "Meera, neutral.",
+          "background": "board_office",
+          "characters": [{ "id": "meera", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "meera", "text": "That fixes it for me. Every other borrower still gets six screens to say no, and messages to their friends." }
+          ]
+        }
+      ],
+      "unlocks": ["CF28"],
+      "choice": {
+        "id": "C2",
+        "options": [
+          { "id": "C2a", "label": "Hold out: the practice has to stop for every borrower", "next": "s4", "shield": 10, "setFlags": [] },
+          { "id": "C2b", "label": "Take the deal: delete my contacts and close the case", "next": "s3b", "shield": -5, "setFlags": ["wobbled"], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s3b": {
+      "title": "Before You Sign",
+      "panels": [
+        {
+          "id": "P3B.1",
+          "description": "Phone screen: a settlement form with a \"Sign\" button. Nyay floats in front of it, worried.",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "appScreen": "settlement_form",
+          "lines": [
+            { "speaker": "nyay", "text": "If you sign, your complaint is settled. Your contacts are deleted, but nothing changes for anyone else. And the Board can't open an inquiry on its own; it needs a complaint or another lawful trigger." },
+            { "speaker": "meera", "text": "Then I'm not signing." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s3"
+    },
+
+    "s4": {
+      "title": "The Hearing",
+      "panels": [
+        {
+          "id": "P4.1",
+          "description": "Board office. Hearing screen with three tiles.",
+          "background": "board_office",
+          "caption": "January 2028. Mediation didn't settle it, so the Board's inquiry goes on.",
+          "characters": [],
+          "appScreen": "hearing_board",
+          "lines": [
+            { "speaker": "board_member", "text": "Both sides will be heard. QuickPaisa first." },
+            { "speaker": "qp_lawyer", "text": "Ms. Meera tapped \"Agree to all\". She consented to everything." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C3",
+        "description": "Meera's reply:",
+        "options": [
+          { "id": "C3a", "label": "\"It was all or nothing to get the loan, and the notice was vague. QuickPaisa has to prove my consent was valid.\"", "next": "s5", "shield": 10, "setFlags": [] },
+          { "id": "C3b", "label": "\"I didn't read the notice, so it doesn't count.\"", "next": "s4b", "shield": -5, "setFlags": ["wobbled"], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s4b": {
+      "title": "Not the Point",
+      "panels": [
+        {
+          "id": "P4B.1",
+          "description": "Meera, worried. Nyay, worried.",
+          "background": "board_office",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "nyay", "text": "Not reading it isn't the problem. The problem is that the consent was bundled and the notice was vague, and QuickPaisa is the one that has to prove otherwise." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s4"
+    },
+
+    "s5": {
+      "title": "\"Exempt\"",
+      "panels": [
+        {
+          "id": "P5.1",
+          "description": "Hearing screen.",
+          "background": "board_office",
+          "characters": [],
+          "appScreen": "hearing_board",
+          "lines": [
+            { "speaker": "qp_lawyer", "text": "The messages to her contacts were to recover a defaulted loan. The Act exempts that." },
+            { "speaker": "board_member", "text": "Ms. Meera?" }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C4",
+        "options": [
+          { "id": "C4a", "label": "\"That exemption is for finding out a defaulter's finances. It doesn't cover telling my friends I'm a defaulter.\"", "next": "s6", "shield": 10, "setFlags": [] },
+          { "id": "C4b", "label": "\"If the law exempts them, I'll drop that part.\"", "next": "s5b", "shield": -10, "setFlags": ["wobbled"], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s5b": {
+      "title": "Read It Again",
+      "panels": [
+        {
+          "id": "P5B.1",
+          "description": "Meera, worried. Nyay, worried.",
+          "background": "board_office",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "nyay", "text": "Read the exemption again. It covers finding out a defaulter's financial information, assets and liabilities, and only in line with other laws on disclosure. Telling her friends about her loan is neither." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s5"
+    },
+
+    "s6": {
+      "title": "The Undertaking",
+      "panels": [
+        {
+          "id": "P6.1",
+          "description": "If kept_evidence. Hearing screen: Meera shares her screenshots.",
+          "showIfFlag": "kept_evidence",
+          "background": "board_office",
+          "characters": [],
+          "appScreen": "hearing_board",
+          "lines": [
+            { "speaker": "board_member", "text": "Ms. Meera's screenshots are now on the record." }
+          ]
+        },
+        {
+          "id": "P6.1",
+          "description": "If not kept_evidence. Hearing screen.",
+          "showIfNotFlag": "kept_evidence",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "appScreen": "hearing_board",
+          "lines": [
+            { "speaker": "board_member", "text": "QuickPaisa will produce its consent records and every recovery message sent to Ms. Meera's contacts, within fourteen days." },
+            { "speaker": "nyay", "text": "The Board can order documents to be produced, just like a civil court." }
+          ]
+        },
+        {
+          "id": "P6.2",
+          "description": "Hearing screen.",
+          "background": "board_office",
+          "characters": [],
+          "appScreen": "hearing_board",
+          "lines": [
+            { "speaker": "qp_lawyer", "text": "QuickPaisa offers a voluntary undertaking. Within 30 days, withdrawing consent will take one tap, and we will publish this promise in our app." },
+            { "speaker": "board_member", "text": "The Board accepts the undertaking on the withdrawal button. The inquiry continues on the messages to contacts and the unanswered grievance." }
+          ]
+        },
+        {
+          "id": "P6.3",
+          "description": "Meera, surprised. Nyay, neutral.",
+          "background": "board_office",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "nyay", "text": "Once the Board accepts an undertaking, there are no more proceedings on what it covers. But if QuickPaisa breaks it, that's a breach in its own right." }
+          ]
+        }
+      ],
+      "unlocks": ["CF29"],
+      "nextByMode": { "law": "s7", "citizen": "s8" }
+    },
+
+    "s7": {
+      "title": "You Are the Board",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7.1",
+          "description": "Board office. Nyay, neutral.",
+          "background": "board_office",
+          "caption": "Law Student mode: you sit as the Board.",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "nyay", "text": "The hearing's over. Here's the record. You decide." }
+          ]
+        },
+        {
+          "id": "P7.2",
+          "description": "Case record card (screen).",
+          "background": "board_office",
+          "characters": [],
+          "appScreen": "case_record",
+          "lines": []
+        }
+      ],
+      "unlocks": ["CF30"],
+      "choice": {
+        "id": "C5",
+        "description": "Is the breach significant under s. 33(1)?",
+        "options": [
+          { "id": "C5a", "label": "Yes: it was deliberate, repeated across borrowers, exposed financial data to people's friends, and is still running", "next": "s7c", "shield": 10, "setFlags": [] },
+          { "id": "C5b", "label": "No: only one person complained", "next": "s7b", "shield": -10, "setFlags": [], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s7b": {
+      "title": "Count the Breach, Not the Complaints",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7B.1",
+          "description": "Nyay, worried.",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "worried" }],
+          "lines": [
+            { "speaker": "nyay", "text": "The test is about the breach, not how many people complained. One complaint can expose a practice that hits every borrower." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s7"
+    },
+
+    "s7c": {
+      "title": "What's Still Open?",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7C.1",
+          "description": "Case record card, with finding 4 greyed out and labelled \"Undertaking accepted\".",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "appScreen": "case_record_undertaking",
+          "lines": [
+            { "speaker": "nyay", "text": "Before you set a number, decide what you can still penalise." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C6",
+        "options": [
+          { "id": "C6a", "label": "The messages to contacts and the unanswered grievance", "next": "s7e", "shield": 10, "setFlags": [] },
+          { "id": "C6b", "label": "Everything, including the withdrawal button", "next": "s7d", "shield": -5, "setFlags": [], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s7d": {
+      "title": "Already Settled",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7D.1",
+          "description": "Nyay, worried.",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "worried" }],
+          "lines": [
+            { "speaker": "nyay", "text": "The Board accepted an undertaking on the button. That bars proceedings on it, unless QuickPaisa breaks the undertaking." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s7c"
+    },
+
+    "s7e": {
+      "title": "Set the Penalty",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7E.1",
+          "description": "Board office. Nyay, neutral, beside a blank order.",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "appScreen": "blank_order",
+          "lines": [
+            { "speaker": "nyay", "text": "Stay within the Schedule limit, and weigh every factor in s. 33(2)." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C7",
+        "options": [
+          { "id": "C7a", "label": "₹250 crore, the highest figure in the Schedule", "next": "s7f", "shield": -10, "setFlags": [], "removeOptionAfterUse": true },
+          { "id": "C7b", "label": "₹10,000", "next": "s7g", "shield": -5, "setFlags": [], "removeOptionAfterUse": true },
+          { "id": "C7c", "label": "₹5 crore, with written reasons on each s. 33(2) factor", "next": "s8", "shield": 10, "setFlags": ["penalty_reasoned"] },
+          { "id": "C7d", "label": "₹50 crore, the most item 7 allows", "next": "s7h", "shield": 0, "setFlags": ["penalty_max"] }
+        ]
+      }
+    },
+
+    "s7f": {
+      "title": "Wrong Item",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7F.1",
+          "description": "Nyay, worried.",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "worried" }],
+          "lines": [
+            { "speaker": "nyay", "text": "₹250 crore is the limit for failing to keep data secure. This case isn't about security, so the most you can impose here is ₹50 crore." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s7e"
+    },
+
+    "s7g": {
+      "title": "Too Small to Matter",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7G.1",
+          "description": "Nyay, worried.",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "worried" }],
+          "lines": [
+            { "speaker": "nyay", "text": "₹10,000 is the limit for a citizen who breaks their duties. For a lender that profited from this practice, it wouldn't stop anything. A penalty has to be effective." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s7e"
+    },
+
+    "s7h": {
+      "title": "Lawful, but Proportionate?",
+      "lawOnly": true,
+      "panels": [
+        {
+          "id": "P7H.1",
+          "description": "Nyay, neutral.",
+          "background": "board_office",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "nyay", "text": "₹50 crore is within the limit, so it's lawful. But it's over a third of QuickPaisa's yearly revenue. Proportion and the penalty's likely impact on QuickPaisa matter too. Let's see what the Board did." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "next": "s8"
+    },
+
+    "s8": {
+      "title": "The Order",
+      "panels": [
+        {
+          "id": "P8.1",
+          "description": "Meera's room by day. Phone screen: the Board's order.",
+          "background": "phone_backdrop",
+          "caption": "March 2028.",
+          "characters": [],
+          "appScreen": "board_order",
+          "lines": []
+        },
+        {
+          "id": "P8.2",
+          "description": "Law, if penalty_reasoned. Nyay, happy.",
+          "showInMode": "law",
+          "showIfFlag": "penalty_reasoned",
+          "background": "meera_room_day",
+          "characters": [{ "id": "nyay", "expression": "happy" }],
+          "lines": [
+            { "speaker": "nyay", "text": "Same figure as the Board, and for the same reasons." }
+          ]
+        },
+        {
+          "id": "P8.2",
+          "description": "Law, if penalty_max. Nyay, neutral.",
+          "showInMode": "law",
+          "showIfFlag": "penalty_max",
+          "background": "meera_room_day",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "nyay", "text": "Yours was lawful, but the Board went lower. It weighed what the penalty would do to QuickPaisa, not just what the law allowed." }
+          ]
+        },
+        {
+          "id": "P8.3",
+          "description": "Meera, surprised.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "Five crore! Do I get any of it?" },
+            { "speaker": "nyay", "text": "No. Penalties go to the Consolidated Fund of India. The Act doesn't give you compensation. What you get is the fix: the messages stop, the contact lists are deleted, and withdrawing consent takes one tap, for everyone." }
+          ]
+        },
+        {
+          "id": "P8.4",
+          "description": "Meera, happy.",
+          "background": "meera_room_day",
+          "characters": [{ "id": "meera", "expression": "happy" }],
+          "lines": [
+            { "speaker": "meera", "text": "Honestly? That's what I wanted." }
+          ]
+        }
+      ],
+      "unlocks": ["CF30", "CF31"],
+      "next": "s9"
+    },
+
+    "s9": {
+      "title": "Data Story",
+      "panels": [
+        {
+          "id": "P9.1",
+          "description": "Phone screen: the QuickPaisa app's settings, with a new one-tap \"Withdraw consent\" button.",
+          "background": "phone_backdrop",
+          "caption": "Sixty days later. QuickPaisa didn't appeal.",
+          "characters": [],
+          "appScreen": "quickpaisa_withdraw_button",
+          "lines": []
+        },
+        {
+          "id": "P9.2",
+          "description": "Navpur street, evening. Arjun, happy.",
+          "background": "neighbourhood",
+          "characters": [{ "id": "arjun", "expression": "happy" }],
+          "lines": [
+            { "speaker": "arjun", "text": "My startup's legal team wants a copy of that order. They're using it as a checklist." }
+          ]
+        },
+        {
+          "id": "P9.3",
+          "description": "If faked_age (Episode 4). Kabir, happy.",
+          "showIfFlag": "faked_age",
+          "background": "neighbourhood",
+          "characters": [{ "id": "kabir", "expression": "happy" }],
+          "lines": [
+            { "speaker": "kabir", "text": "I asked Amma properly this time. No more fake birthdays." }
+          ]
+        },
+        {
+          "id": "P9.3",
+          "description": "If not faked_age. Kabir, happy.",
+          "showIfNotFlag": "faked_age",
+          "background": "neighbourhood",
+          "characters": [{ "id": "kabir", "expression": "happy" }],
+          "lines": [
+            { "speaker": "kabir", "text": "PlayVerse asked Amma before my new update. She said yes in one tap." }
+          ]
+        },
+        {
+          "id": "P9.4",
+          "description": "If nominated (Episode 5). Ammamma, neutral.",
+          "showIfFlag": "nominated",
+          "background": "neighbourhood",
+          "characters": [{ "id": "ammamma", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "ammamma", "text": "And if I'm ever not able to manage, Meera speaks for my data." }
+          ]
+        },
+        {
+          "id": "P9.4",
+          "description": "If not nominated. Ammamma, neutral.",
+          "showIfNotFlag": "nominated",
+          "background": "neighbourhood",
+          "characters": [{ "id": "ammamma", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "ammamma", "text": "I still need to choose who'll speak for my data one day." }
+          ]
+        },
+        {
+          "id": "P9.5",
+          "description": "If helped_false_complaint (Episode 5). Mr. Rao, happy.",
+          "showIfFlag": "helped_false_complaint",
+          "background": "neighbourhood",
+          "characters": [{ "id": "rao", "expression": "happy" }],
+          "lines": [
+            { "speaker": "rao", "text": "One true complaint, and it worked. I've learned my lesson." }
+          ]
+        },
+        {
+          "id": "P9.5",
+          "description": "If not helped_false_complaint. Mr. Rao, happy.",
+          "showIfNotFlag": "helped_false_complaint",
+          "background": "neighbourhood",
+          "characters": [{ "id": "rao", "expression": "happy" }],
+          "lines": [
+            { "speaker": "rao", "text": "One honest complaint. Much cheaper than ten fake ones." }
+          ]
+        },
+        {
+          "id": "P9.6",
+          "description": "Meera, happy, with Nyay, happy.",
+          "background": "neighbourhood",
+          "characters": [
+            { "id": "meera", "expression": "happy" },
+            { "id": "nyay", "expression": "happy" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "Six problems, one law. I had these rights all along." },
+            { "speaker": "nyay", "text": "Rights and duties. And now you know how to use them." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "next": "ending"
+    }
+  },
+
+  "appScreens": {
+    "grievance_calendar_note": { "type": "calendar", "calendar": "QuickPaisa grievance sent (July). Reply promised within 30 days." },
+    "evidence_folder": { "type": "folder", "title": "QuickPaisa evidence", "items": ["Screenshots", "Grievance email"] },
+    "draft_post": {
+      "type": "post",
+      "author": "Meera",
+      "tag": "QuickPaisa",
+      "embed": {
+        "sender": "Rohan, QuickPaisa Recovery",
+        "text": "Your contact Meera is a loan defaulter. Ask her to pay immediately."
+      },
+      "contactsShowing": true
+    },
+    "civil_court_search": { "type": "search", "text": "sue loan app for data misuse civil court" },
+    "board_complaint_form": {
+      "type": "sections",
+      "app": "Data Protection Board",
+      "sections": [
+        { "heading": "Against:", "text": "QuickPaisa." },
+        { "heading": "What happened:", "text": "QuickPaisa's recovery agent messaged my contacts calling me a loan defaulter. Withdrawing consent took six screens. My grievance of July 2027 was never answered." },
+        { "heading": "Attached:", "text": "my grievance email and the agent's messages." }
+      ],
+      "button": "Submit"
+    },
+    "board_received": { "type": "email", "from": "Data Protection Board", "body": "Complaint received. The Board finds sufficient grounds to inquire and has asked QuickPaisa to respond. Hearings will be held online. You do not need to travel." },
+    "hearing_mediation": { "type": "hearing", "app": "Data Protection Board", "tiles": [{ "name": "Mediator" }, { "name": "QuickPaisa (Legal)" }, { "name": "Meera", "portrait": "meera_neutral" }] },
+    "hearing_board": { "type": "hearing", "app": "Data Protection Board", "tiles": [{ "name": "Board Member" }, { "name": "QuickPaisa (Legal)" }, { "name": "Meera", "portrait": "meera_neutral" }] },
+    "settlement_form": { "type": "menu", "buttons": ["Sign"] },
+    "case_record": {
+      "type": "record",
+      "title": "Findings of the inquiry:",
+      "items": [
+        "QuickPaisa's recovery agents messaged borrowers' contacts calling them defaulters. This is standard practice and was still running at the hearing.",
+        "About 2 lakh borrowers use the app.",
+        "Meera's grievance went unanswered for more than 90 days.",
+        "'Agree to all' bundled contacts, photos, location and SMS with the loan. The withdrawal button is covered by the accepted undertaking.",
+        "QuickPaisa says the messages helped it recover overdue loans faster.",
+        "QuickPaisa is a mid-sized lender with annual revenue of about ₹120 crore."
+      ]
+    },
+    "case_record_undertaking": {
+      "type": "record",
+      "title": "Findings of the inquiry:",
+      "items": [
+        "QuickPaisa's recovery agents messaged borrowers' contacts calling them defaulters. This is standard practice and was still running at the hearing.",
+        "About 2 lakh borrowers use the app.",
+        "Meera's grievance went unanswered for more than 90 days.",
+        "'Agree to all' bundled contacts, photos, location and SMS with the loan. The withdrawal button is covered by the accepted undertaking.",
+        "QuickPaisa says the messages helped it recover overdue loans faster.",
+        "QuickPaisa is a mid-sized lender with annual revenue of about ₹120 crore."
+      ],
+      "greyedItem": 4,
+      "greyedLabel": "Undertaking accepted"
+    },
+    "blank_order": { "type": "order", "app": "Data Protection Board", "text": "Penalty: ₹ ____" },
+    "board_order": { "type": "order", "app": "Data Protection Board", "text": "QuickPaisa breached the Act by messaging borrowers' contacts about their loans without a lawful ground, and by not answering grievances. The breach is significant. Penalty: ₹5 crore. Within 30 days, QuickPaisa must stop messaging borrowers' contacts and delete the contact lists it collected for recovery. QuickPaisa may appeal to the Appellate Tribunal (TDSAT) within 60 days." },
+    "quickpaisa_withdraw_button": { "type": "menu", "app": "QuickPaisa", "buttons": ["Withdraw consent"] }
+  },
+
+  "scans": {
+    "LS25": {
+      "mode": "law",
+      "afterScenes": ["s1"],
+      "question": "Meera's grievance of July 2027 is still unanswered in November. Can she now approach the Board?",
+      "shortAnswerOptions": ["Yes", "No, she must wait for QuickPaisa to reply"],
+      "correct": 0,
+      "modelAnswer": "Yes. Under s. 13(3), a Data Principal must exhaust the opportunity of redressing her grievance with the Data Fiduciary before approaching the Board. s. 8(10) requires an effective grievance mechanism, and s. 13(2) requires a response within the prescribed period. Rule 14(3) requires the fiduciary to publish its response period, which may not exceed ninety days. QuickPaisa's own 30-day period and the ninety-day outer limit have both passed, so Meera has exhausted the opportunity and may complain under s. 27(1)(b)."
+    },
+    "CS24": {
+      "mode": "both",
+      "afterScenes": ["s1c"],
+      "question": "Can Meera sue QuickPaisa in a civil court over how it used her data?",
+      "options": ["Yes, any court will do", "No. Cases like this go to the Data Protection Board"],
+      "correct": 1,
+      "explanation": "Civil courts can't hear matters the Board has the power to deal with."
+    },
+    "LS26": {
+      "mode": "law",
+      "afterScenes": ["s1c"],
+      "question": "Can Meera file a civil suit against QuickPaisa over its processing of her data?",
+      "shortAnswerOptions": ["No, it is barred", "Yes, as an alternative to the Board"],
+      "correct": 0,
+      "modelAnswer": "No. s. 39 bars civil courts from entertaining any suit or proceeding on a matter the Board is empowered to deal with, and no court or other authority may grant an injunction against action taken under the Act. s. 44(2)(a) also omits s. 43A of the IT Act, 2000, which had allowed compensation claims against bodies corporate that negligently failed to protect sensitive personal data."
+    },
+    "CS23": {
+      "mode": "both",
+      "afterScenes": ["s2"],
+      "question": "How does Meera complain to the Data Protection Board?",
+      "options": ["She travels to the Board's office in person", "Online. The Board works as a digital office", "Through the police station"],
+      "correct": 1,
+      "explanation": "Complaints, hearings and decisions are digital by design, so nobody has to travel."
+    },
+    "LS27": {
+      "mode": "law",
+      "afterScenes": ["s2"],
+      "question": "What must the Board do first after receiving Meera's complaint?",
+      "shortAnswerOptions": ["Impose a penalty", "Decide whether there are sufficient grounds to inquire"],
+      "correct": 1,
+      "modelAnswer": "Under s. 28(3), the Board decides whether there are sufficient grounds to proceed with an inquiry. If not, it may close the proceedings with written reasons (s. 28(4)). If so, it may inquire, again with written reasons (s. 28(5)). The inquiry follows the principles of natural justice (s. 28(6)), and the Board has civil-court powers to summon and examine on oath, require documents and inspect data (s. 28(7)). It may issue interim orders after hearing the person concerned (s. 28(10)). Under Rule 19(9), the inquiry must be completed within six months of receiving the complaint, extendable for written reasons by up to three months at a time. The Board works as a digital office (s. 28(1); Rule 20)."
+    },
+    "CS25": {
+      "mode": "both",
+      "afterScenes": ["s3"],
+      "question": "The Board asks Meera and QuickPaisa to try mediation. What does that mean?",
+      "options": ["Meera has lost", "Both sides try to settle, with a mediator they agree on", "QuickPaisa is fined automatically"],
+      "correct": 1,
+      "explanation": "Mediation is a chance to settle. If it fails, the Board's inquiry carries on."
+    },
+    "LS28": {
+      "mode": "law",
+      "afterScenes": ["s3"],
+      "question": "Who decides that the dispute goes to mediation?",
+      "shortAnswerOptions": ["Meera alone", "The Board, if it thinks the complaint may be resolved that way"],
+      "correct": 1,
+      "modelAnswer": "Under s. 31, if the Board is of the opinion that a complaint may be resolved by mediation, it may direct the parties to attempt mediation before a mediator they mutually agree on, or as provided under any law in force. Settling matters: the Act gives the Board no power to begin an inquiry on its own motion. Under s. 27(1), it acts on a breach intimation, a Data Principal's complaint, a reference from the Central or a State Government, or a court's directions. If Meera settles, QuickPaisa's wider practice may go unexamined unless one of those routes brings it back."
+    },
+    "CS26": {
+      "mode": "both",
+      "afterScenes": ["s4"],
+      "question": "QuickPaisa says Meera tapped \"Agree to all\", so she agreed to everything. Is that right?",
+      "options": ["Yes, a tap is a tap", "No. Consent must be free and specific, and QuickPaisa has to prove it was valid"],
+      "correct": 1,
+      "explanation": "All-or-nothing consent to data the loan doesn't need isn't valid, and the burden of proof is on the company."
+    },
+    "LS29": {
+      "mode": "law",
+      "afterScenes": ["s5"],
+      "question": "The agent's messages went to Meera's contacts. Can Meera complain about them?",
+      "shortAnswerOptions": ["No, only the contacts can", "Yes, because the messages disclosed her loan, which is her personal data"],
+      "correct": 1,
+      "modelAnswer": "Yes. s. 27(1)(b) lets a Data Principal complain of a fiduciary's breach of its obligations in relation to her personal data. The messages disclosed Meera's loan and alleged default, which is her personal data, processed without a lawful ground under s. 4 (neither consent nor a legitimate use). s. 17(1)(f) exempts processing to ascertain the financial information, assets and liabilities of a person who has defaulted on a loan from a financial institution, subject to disclosure rules in other laws; it does not cover announcing the default to her contacts. The contacts' names and numbers are their own personal data, and they could complain about that themselves. Once it is inquiring, s. 28(5) lets the Board look into QuickPaisa's affairs to check whether it is complying with the Act, which brings its treatment of other borrowers into view."
+    },
+    "LS30": {
+      "mode": "law",
+      "afterScenes": ["s6"],
+      "question": "The Board accepts QuickPaisa's undertaking on the withdrawal button. What follows?",
+      "shortAnswerOptions": ["QuickPaisa is cleared of everything", "Proceedings on what the undertaking covers are barred, and breaking it is itself a breach"],
+      "correct": 1,
+      "modelAnswer": "Under s. 32(1), the Board may accept a voluntary undertaking at any stage of proceedings under s. 28. It may include taking action within a time the Board sets, refraining from action, and publicising the undertaking (s. 32(2)). The Board may vary its terms with the giver's consent (s. 32(3)). Acceptance bars proceedings as regards the contents of the undertaking (s. 32(4)), so the inquiry continues only on matters it doesn't cover. Failure to keep any term is deemed a breach of the Act, and the Board may proceed under s. 33 after a hearing (s. 32(5)). The penalty for that is up to the amount applicable to the breach for which the s. 28 proceedings began (Schedule item 6)."
+    },
+    "LS31": {
+      "mode": "law",
+      "afterScenes": ["s7"],
+      "question": "Which of these is NOT a factor the Board must consider under s. 33(2)?",
+      "shortAnswerOptions": ["The nature, gravity and duration of the breach", "Whether QuickPaisa gained from the breach", "The compensation Meera needs", "The likely impact of the penalty on QuickPaisa"],
+      "correct": 2,
+      "modelAnswer": "s. 33(2) lists: (a) the nature, gravity and duration of the breach; (b) the type and nature of the personal data affected; (c) the repetitive nature of the breach; (d) whether the person realised a gain or avoided a loss; (e) whether it acted to mitigate the effects, and how timely and effective that was; (f) whether the penalty is proportionate and effective, given the need to secure observance and deter breach; and (g) the likely impact of the penalty on the person. Compensation to the complainant is not a factor, and penalties go to the Consolidated Fund of India (s. 34)."
+    },
+    "LS32": {
+      "mode": "law",
+      "afterScenes": ["s7"],
+      "question": "Which Schedule item sets the limit for QuickPaisa's remaining breaches?",
+      "shortAnswerOptions": ["Item 1, up to ₹250 crore", "Item 7, up to ₹50 crore"],
+      "correct": 1,
+      "modelAnswer": "Item 1 (₹250 crore) covers failure to take reasonable security safeguards under s. 8(5); item 2 (₹200 crore) covers breach notification under s. 8(6); item 3 (₹200 crore) covers children under s. 9; item 4 (₹150 crore) covers Significant Data Fiduciaries under s. 10. None fits. Disclosure to contacts without a lawful ground (ss. 4 and 6) and the unanswered grievance (s. 8(10)) fall under item 7, \"any other provision\", up to ₹50 crore. This game treats them as one penalty decision within that limit; the Act does not say expressly how the limit applies where an inquiry finds several breaches."
+    },
+    "CS27": {
+      "mode": "both",
+      "afterScenes": ["s8"],
+      "question": "Who gets the ₹5 crore penalty?",
+      "options": ["Meera", "The government, through the Consolidated Fund of India", "Meera's contacts"],
+      "correct": 1,
+      "explanation": "The Board can fine a company and order it to fix things, but it doesn't award compensation."
+    },
+    "CS28": {
+      "mode": "both",
+      "afterScenes": ["s8"],
+      "question": "QuickPaisa disagrees with the Board's order. What can it do?",
+      "options": ["Ignore it", "Appeal to the Appellate Tribunal (TDSAT) within 60 days", "Ask a civil court to cancel it"],
+      "correct": 1,
+      "explanation": "Appeals go to TDSAT, normally within 60 days of receiving the order."
+    },
+    "LS33": {
+      "mode": "law",
+      "afterScenes": ["s8"],
+      "question": "QuickPaisa decides to appeal three months after receiving the order. Can it?",
+      "shortAnswerOptions": ["Yes, at any time", "Only if TDSAT is satisfied there was sufficient cause for the delay", "Never"],
+      "correct": 1,
+      "modelAnswer": "Under s. 29(1)–(2), an appeal against a Board order lies to the Appellate Tribunal (TDSAT, s. 2(a)) within sixty days of receiving the order. Under s. 29(3), TDSAT may hear a later appeal if satisfied there was sufficient cause for the delay. Appeals are filed digitally, with a fee like that for appeals under the TRAI Act, 1997 (Rule 22(1)–(2)). TDSAT should try to dispose of an appeal within six months (s. 29(6)). A further appeal from TDSAT lies under s. 18 of the TRAI Act (s. 29(9)), and TDSAT's orders are executable as civil-court decrees (s. 30). The ₹5 crore, once realised, goes to the Consolidated Fund of India (s. 34)."
+    }
+  },
+
+  "caseFiles": {
+    "CF26": {
+      "title": "Taking it to the Board",
+      "plain": "If the company's grievance process doesn't help, complain to the Data Protection Board online. Civil courts can't hear these cases.",
+      "law": "s. 13(3); s. 27(1)(b); s. 28(1); s. 39; Rules 14(3) and 20",
+      "inForce": "Rule 14: 13 May 2027. Rule 20: 13 Nov 2025"
+    },
+    "CF27": {
+      "title": "How the Board decides",
+      "plain": "The Board first checks there are enough grounds, then inquires fairly, hears both sides, and aims to finish within six months.",
+      "law": "s. 28(3)–(11); Rule 19(9)",
+      "inForce": "13 Nov 2025"
+    },
+    "CF28": {
+      "title": "Mediation",
+      "plain": "The Board can ask both sides to try to settle with a mediator they agree on.",
+      "law": "s. 31",
+      "inForce": ""
+    },
+    "CF29": {
+      "title": "Promises to the Board",
+      "plain": "A company can promise the Board to fix something. Once the Board accepts, that issue is closed, but breaking the promise is a breach in itself.",
+      "law": "s. 32; Schedule item 6",
+      "inForce": ""
+    },
+    "CF30": {
+      "title": "Penalties",
+      "plain": "For a significant breach, the Board can fine a company up to the limit in the Schedule, weighing how serious it was, what data was hit, whether it was repeated, and what's fair. The money goes to the government, not to you.",
+      "law": "s. 33(1)–(2); s. 34; Schedule items 1–7",
+      "inForce": ""
+    },
+    "CF31": {
+      "title": "Appeals",
+      "plain": "Anyone unhappy with a Board order can appeal to TDSAT within 60 days.",
+      "law": "s. 29; s. 30; Rule 22",
+      "inForce": "13 May 2027"
+    }
+  },
+
+  "endings": [
+    {
+      "id": "closed",
+      "title": "Case closed",
+      "requires": [],
+      "requiresMissing": ["took_shortcut", "wobbled"],
+      "caption": "QuickPaisa paid its penalty, fixed its app and stopped messaging borrowers' friends. Meera did it by the book, every step of the way.",
+      "characters": [{ "id": "nyay", "expression": "happy" }],
+      "lines": [{ "speaker": "nyay", "text": "Grievance first, then the Board, then the facts. That's how you win." }]
+    },
+    {
+      "id": "wobble",
+      "title": "Won, with a wobble",
+      "requires": ["wobbled"],
+      "caption": "QuickPaisa paid its penalty and fixed its app, but Meera nearly gave ground along the way.",
+      "characters": [{ "id": "nyay", "expression": "neutral" }],
+      "lines": [{ "speaker": "nyay", "text": "You got there. Next time, trust your rights from the start: the company has to prove its case, and exemptions are narrow." }]
+    },
+    {
+      "id": "longway",
+      "title": "The long way round",
+      "requires": ["took_shortcut"],
+      "caption": "QuickPaisa paid its penalty and fixed its app, after Meera found the right door.",
+      "characters": [{ "id": "nyay", "expression": "neutral" }],
+      "lines": [{ "speaker": "nyay", "text": "Posting or suing felt faster, but the Board was always the right place." }]
+    }
+  ],
+
+  "badges": [
+    { "id": "rights_unlocked_board", "title": "Rights Unlocked: The Board", "requiresScene": "s8" },
+    { "id": "steady_hand", "title": "Steady Hand", "requiresMissing": ["wobbled"] },
+    { "id": "data_story_complete", "title": "Data Story Complete" },
+    { "id": "fair_judge", "title": "Fair Judge", "requiresFlag": "penalty_reasoned" }
+  ]
+}

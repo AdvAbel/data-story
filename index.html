@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-version="20261029-1850">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Story</title>
+  <meta name="description" content="A comic you play about data rights in India.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <!-- Fonts (Bangers for comic headings, Nunito for body text) are in fonts/
+       and loaded by css/styles.css, so the game requests nothing from other sites. -->
+  <link rel="stylesheet" href="css/styles.css?v=20261029-1850">
+</head>
+<body>
+  <!-- Top bar, shown only while playing an episode. -->
+  <header id="hud" hidden>
+    <button id="exit-button" class="hud-exit" type="button">✕</button>
+    <div class="shield">
+      <span class="shield-text"><span id="shield-label"></span> <strong id="shield-value">50</strong></span>
+      <div id="shield-meter" class="shield-meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-labelledby="shield-label">
+        <div id="shield-fill" class="shield-fill"></div>
+      </div>
+      <span id="shield-delta" class="shield-delta" aria-live="polite"></span>
+    </div>
+    <span id="hud-mode" class="hud-mode"></span>
+  </header>
+
+  <!-- Every screen is drawn inside here by js/main.js. -->
+  <main id="app" aria-live="polite"></main>
+
+  <!-- Case File button: always visible while playing (the top bar shows/hides it). -->
+  <button id="casefile-button" class="casefile-button" type="button">
+    📁 <span id="casefile-label"></span> <span id="casefile-count" class="casefile-count">0</span>
+  </button>
+
+  <button id="continue" class="continue-button" type="button" hidden></button>
+
+  <div id="modal" class="overlay" hidden></div>
+  <div id="drawer" class="overlay drawer" hidden></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <!-- Every version number on a file link below (and data-version on <html>) is the game's
+       version. tools/set-version.py changes them all at once after an update,
+       so players' browsers load the new files instead of old saved copies.
+       The import map makes the JS files that main.js loads use it too. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "./js/engine.js": "./js/engine.js?v=20261029-1850",
+      "./js/renderer.js": "./js/renderer.js?v=20261029-1850",
+      "./js/scans.js": "./js/scans.js?v=20261029-1850",
+      "./js/casefiles.js": "./js/casefiles.js?v=20261029-1850",
+      "./js/storage.js": "./js/storage.js?v=20261029-1850"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js?v=20261029-1850"></script>
+</body>
+</html>

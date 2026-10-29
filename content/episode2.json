@@ -1,0 +1,577 @@
+{
+  "id": "ep2",
+  "title": "Delete Me",
+  "startScene": "s1",
+  "shieldStart": 50,
+  "scenes": {
+    "s1": {
+      "title": "We Miss You",
+      "panels": [
+        {
+          "id": "P1.1",
+          "description": "Meera's room by day. Meera, surprised, holding her phone. Email on screen from BazaarBox.",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "surprised" }],
+          "appScreen": "bazaarbox_miss_you",
+          "lines": [{ "speaker": "meera", "text": "Flat 4B? I moved out of there months ago." }]
+        },
+        {
+          "id": "P1.2",
+          "description": "Phone screen: a social media ad from AdNest.",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "worried" }],
+          "appScreen": "adnest_ad",
+          "lines": [{ "speaker": "meera", "text": "And now some company called AdNest knows what I bought?" }]
+        },
+        {
+          "id": "P1.3",
+          "description": "Nyay floats up beside the phone.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "nyay", "text": "Before you do anything, find out what BazaarBox actually holds about you, and who it shared it with." },
+            { "speaker": "meera", "text": "I haven't opened that app in a year. Shouldn't my data be gone by now?" }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C1",
+        "options": [
+          { "id": "A", "label": "Unsubscribe from BazaarBox's emails", "next": "s2a", "shield": -10, "setFlags": [], "removeOptionAfterUse": true },
+          { "id": "B", "label": "Ask BazaarBox what data it holds about her", "next": "s3", "shield": 10, "setFlags": [] },
+          { "id": "C", "label": "Complain to the Data Protection Board straight away", "next": "s2c", "shield": -5, "setFlags": ["board_too_early"], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s2a": {
+      "title": "Unsubscribed",
+      "panels": [
+        {
+          "id": "P2A.1",
+          "description": "Phone screen: unsubscribed confirmation.",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "happy" }],
+          "appScreen": "bazaarbox_unsubscribed",
+          "lines": [{ "speaker": "meera", "text": "Done. Easy." }]
+        },
+        {
+          "id": "P2A.2",
+          "description": "Next day. Another AdNest ad.",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "angry" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "adnest_ad_again",
+          "lines": [
+            { "speaker": "meera", "text": "Seriously?" },
+            { "speaker": "nyay", "text": "Unsubscribing stops one kind of email. It doesn't tell you what BazaarBox holds, and it doesn't touch what it already shared." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s2c": {
+      "title": "Not Yet",
+      "panels": [
+        {
+          "id": "P2C.1",
+          "description": "Phone screen: the Data Protection Board's online complaint form. Meera taps \"No\".",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "neutral" }],
+          "appScreen": "board_form",
+          "lines": []
+        },
+        {
+          "id": "P2C.2",
+          "description": "The form shows that she must first use the company's grievance redressal.",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "board_form_reply",
+          "lines": [
+            { "speaker": "meera", "text": "So the Board won't even look at it?" },
+            { "speaker": "nyay", "text": "Not yet. The company gets the first chance to fix it. The Board is your next step if it doesn't." }
+          ]
+        }
+      ],
+      "unlocks": ["CF11"],
+      "returnToChoiceOf": "s1"
+    },
+
+    "s3": {
+      "title": "The Privacy Centre",
+      "panels": [
+        {
+          "id": "P3.1",
+          "description": "Phone screen: the BazaarBox app's footer.",
+          "background": "bazaarbox_desk",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "bazaarbox_footer",
+          "lines": [
+            { "speaker": "meera", "text": "Registered email… that's my old college one." },
+            { "speaker": "nyay", "text": "Companies have to publish how to make a request, and what details they need to know it's really you." }
+          ]
+        }
+      ],
+      "unlocks": ["CF13"],
+      "choice": {
+        "id": "C2",
+        "options": [
+          { "id": "C2a", "label": "Sign in to the Privacy Centre with her old college email and request her data", "next": "s4", "shield": 10, "setFlags": ["used_proper_channel"] },
+          { "id": "C2b", "label": "Email privacy@bazaarbox.example from her new work email: \"Send me my data.\"", "next": "s3a", "shield": -5, "setFlags": [], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s3a": {
+      "title": "Who Are You?",
+      "panels": [
+        {
+          "id": "P3A.1",
+          "description": "Meera at her office desk. BazaarBox's reply.",
+          "background": "office",
+          "characters": [
+            { "id": "meera", "expression": "angry" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "bazaarbox_who_are_you",
+          "lines": [
+            { "speaker": "meera", "text": "They're stalling!" },
+            { "speaker": "nyay", "text": "Actually, this is fair. They told you exactly how to ask, and checking it's really you protects your data too." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s3"
+    },
+
+    "s4": {
+      "title": "What They Know",
+      "panels": [
+        {
+          "id": "P4.1",
+          "description": "Meera at her desk at home. Phone screen: BazaarBox data summary.",
+          "background": "bazaarbox_desk",
+          "caption": "Two weeks later.",
+          "characters": [{ "id": "meera", "expression": "surprised" }],
+          "appScreen": "bazaarbox_data_summary",
+          "lines": [{ "speaker": "meera", "text": "Three years of orders. And there's AdNest." }]
+        },
+        {
+          "id": "P4.2",
+          "description": "Video call with Arjun.",
+          "background": "bazaarbox_desk",
+          "characters": [
+            { "id": "arjun", "expression": "neutral" },
+            { "id": "meera", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "arjun", "text": "That's the point of asking. Now you know who else has your data, and what they got." },
+            { "speaker": "meera", "text": "Can I get a copy to take to another shopping app?" },
+            { "speaker": "arjun", "text": "Indian law doesn't give you that. You get a summary, not a portable copy." }
+          ]
+        }
+      ],
+      "unlocks": ["CF8"],
+      "next": "s5"
+    },
+
+    "s5": {
+      "title": "Fix It or Delete It",
+      "panels": [
+        {
+          "id": "P5.1",
+          "description": "Phone screen: BazaarBox Privacy Centre, with two buttons.",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "bazaarbox_privacy_centre",
+          "lines": [
+            { "speaker": "meera", "text": "The address is wrong, and I don't shop there any more." },
+            { "speaker": "nyay", "text": "You can ask them to fix what's wrong, and to erase what you no longer want them to keep." }
+          ]
+        }
+      ],
+      "unlocks": ["CF9"],
+      "choice": {
+        "id": "C3",
+        "options": [
+          { "id": "C3a", "label": "Correct the address and erase her account and data", "next": "s6e", "shield": 10, "setFlags": ["requested_erasure"] },
+          { "id": "C3b", "label": "Only correct the address", "next": "s6k", "shield": 0, "setFlags": [] }
+        ]
+      }
+    },
+
+    "s6e": {
+      "title": "The Reply",
+      "panels": [
+        {
+          "id": "P6E.1",
+          "description": "Phone screen: BazaarBox's email.",
+          "background": "phone_backdrop",
+          "caption": "Ten days later.",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "bazaarbox_erasure_reply",
+          "lines": [
+            { "speaker": "meera", "text": "So they don't have to delete everything?" },
+            { "speaker": "nyay", "text": "Not what another law says they must keep. And a good reply tells you what was kept, and why." }
+          ]
+        },
+        {
+          "id": "P6E.2",
+          "description": "Meera, neutral, rereading the email.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "And AdNest?" },
+            { "speaker": "nyay", "text": "AdNest is a separate company with its own copy. That's a question for another day." }
+          ]
+        }
+      ],
+      "unlocks": ["CF10"],
+      "choice": {
+        "id": "C4",
+        "options": [
+          { "id": "C4a", "label": "Save the reply", "next": "s7", "shield": 5, "setFlags": ["kept_evidence_ep2"] },
+          { "id": "C4c", "label": "Don't bother", "next": "s7", "shield": 0, "setFlags": [] },
+          { "id": "C4b", "label": "Complain to the Board that BazaarBox kept her invoices", "next": "s6b", "shield": -5, "setFlags": [], "removeOptionAfterUse": true }
+        ]
+      }
+    },
+
+    "s6b": {
+      "title": "Hold On",
+      "panels": [
+        {
+          "id": "P6B.1",
+          "description": "Meera starts typing a complaint. Nyay floats in front of the screen, worried.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "nyay", "text": "Hold on. Keeping records a law requires isn't a breach. And the Act asks people not to file false or frivolous complaints." },
+            { "speaker": "meera", "text": "Fair. They did what I asked." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s6e"
+    },
+
+    "s6k": {
+      "title": "Address Fixed",
+      "panels": [
+        {
+          "id": "P6K.1",
+          "description": "Phone screen: BazaarBox's email.",
+          "background": "phone_backdrop",
+          "caption": "Ten days later.",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "bazaarbox_address_reply",
+          "lines": [
+            { "speaker": "meera", "text": "At least the deals will reach the right flat now." },
+            { "speaker": "nyay", "text": "Your address is fixed. But they still hold three years of your orders, and can keep using them as far as your consent allows." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C4k",
+        "options": [
+          { "id": "C4ka", "label": "Save the reply", "next": "s7", "shield": 5, "setFlags": ["kept_evidence_ep2"] },
+          { "id": "C4kb", "label": "Don't bother", "next": "s7", "shield": 0, "setFlags": [] }
+        ]
+      }
+    },
+
+    "s7": {
+      "title": "Three Years",
+      "panels": [
+        {
+          "id": "P7.1",
+          "description": "Office. Arjun at his desk, happy.",
+          "background": "office",
+          "characters": [
+            { "id": "arjun", "expression": "happy" },
+            { "id": "meera", "expression": "surprised" }
+          ],
+          "lines": [
+            { "speaker": "arjun", "text": "Here's something most people don't know. A shopping app with at least 2 crore users has to erase an inactive user's data after three years, and warn them 48 hours before." },
+            { "speaker": "meera", "text": "So if I'd just waited, it would have gone anyway?" }
+          ]
+        },
+        {
+          "id": "P7.2",
+          "description": "Nyay, neutral.",
+          "background": "office",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "nyay", "text": "Eventually. The three years run from your last visit, your last request, or the date that rule started applying, whichever is latest. For you, that's years away. And every request you make starts the clock again." }
+          ]
+        }
+      ],
+      "unlocks": ["CF12"],
+      "next": "s8"
+    },
+
+    "s8": {
+      "title": "Clean Slate",
+      "panels": [
+        {
+          "id": "P8.1",
+          "description": "Meera's room by day. Meera, happy, scrolling her phone.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "happy" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "lines": [
+            { "speaker": "meera", "text": "Fewer kitchen ads already." },
+            { "speaker": "nyay", "text": "And next time an app asks for your data, you'll know what to ask back." }
+          ]
+        },
+        {
+          "id": "P8.2",
+          "description": "Phone rings: Ammamma, worried.",
+          "background": "ammamma_home",
+          "characters": [{ "id": "ammamma", "expression": "worried" }],
+          "lines": [
+            { "speaker": "ammamma", "text": "Molay, the hospital sent me a strange message about my records…" }
+          ]
+        },
+        {
+          "id": "P8.3",
+          "description": "Teaser card.",
+          "background": "meera_room_day",
+          "characters": [],
+          "appScreen": "episode3_teaser",
+          "lines": []
+        }
+      ],
+      "unlocks": [],
+      "next": "ending"
+    }
+  },
+
+  "appScreens": {
+    "bazaarbox_miss_you": { "type": "email", "from": "BazaarBox", "body": "Meera, we miss you! Fresh deals near Flat 4B, Old Lane. Need another pressure cooker?" },
+    "adnest_ad": { "type": "ad", "app": "AdNest", "text": "Because you shopped on BazaarBox: kitchen deals near Old Lane!" },
+    "bazaarbox_unsubscribed": { "type": "notification", "app": "BazaarBox", "text": "You've been unsubscribed from BazaarBox marketing emails." },
+    "adnest_ad_again": { "type": "ad", "app": "AdNest", "text": "Still thinking about kitchenware?" },
+    "board_form": {
+      "type": "form",
+      "app": "Data Protection Board",
+      "question": "Have you already raised this grievance with the company, and did it fail to resolve it?",
+      "answers": [
+        { "text": "Yes", "chosen": false },
+        { "text": "No", "chosen": true }
+      ]
+    },
+    "board_form_reply": { "type": "notice", "app": "Data Protection Board", "text": "You must first use the company's grievance redressal. You can come back if it does not resolve your grievance." },
+    "bazaarbox_footer": { "type": "footer", "app": "BazaarBox", "text": "Privacy Centre: see your data · correct it · delete it. Questions: Grievance Officer, privacy@bazaarbox.example. We reply to grievances within 30 days. To verify it's you, sign in or use your registered email." },
+    "bazaarbox_who_are_you": { "type": "email", "from": "BazaarBox", "body": "We couldn't find an account linked to this email. Please make your request through the Privacy Centre using your registered email or username, so we can confirm it's you. Grievance Officer: privacy@bazaarbox.example." },
+    "bazaarbox_data_summary": {
+      "type": "summary",
+      "app": "BazaarBox",
+      "groups": [
+        { "title": "Data held", "items": ["name", "phone number", "address (Flat 4B, Old Lane)", "order history (3 years)", "app browsing history", "device ID"] },
+        { "title": "What we do with it", "items": ["deliver orders", "process payments", "personalise offers", "share with partners for advertising"] },
+        { "title": "Shared with", "items": ["SwiftShip Logistics (delivery, Data Processor)", "PayGate (payments, Data Processor)", "AdNest (advertising partner): name, email, order categories"] }
+      ]
+    },
+    "bazaarbox_privacy_centre": { "type": "menu", "app": "BazaarBox Privacy Centre", "buttons": ["Correct my data", "Erase my data"] },
+    "bazaarbox_erasure_reply": { "type": "email", "from": "BazaarBox", "body": "We've corrected your address and erased your account, browsing history and marketing profile. We've told our Data Processors, SwiftShip and PayGate, to erase the data we gave them, unless the law requires them to keep it. We've stopped sharing your data with AdNest. We must keep your invoices for as long as tax law requires, and records of your orders for at least one year under the DPDP Rules. Questions: Grievance Officer, privacy@bazaarbox.example." },
+    "bazaarbox_address_reply": { "type": "email", "from": "BazaarBox", "body": "We've updated your address. Your account remains active. Questions: Grievance Officer, privacy@bazaarbox.example." },
+    "episode3_teaser": { "type": "teaser", "text": "Episode 3: The Leak. What happened at CureWell Hospitals?" }
+  },
+
+  "scans": {
+    "CS6": {
+      "mode": "both",
+      "afterScenes": ["s2a"],
+      "question": "Myth or reality? \"If I unsubscribe from a company's emails, it has to delete my data.\"",
+      "options": ["Reality", "Myth"],
+      "correct": 1,
+      "explanation": "Unsubscribing only stops those emails. To find out what a company holds, or to have it erased, you have to ask it."
+    },
+    "CS7": {
+      "mode": "both",
+      "afterScenes": ["s2c"],
+      "question": "Before you complain to the Data Protection Board, you must first:",
+      "options": ["Hire a lawyer", "Use the company's own grievance process", "Wait three years"],
+      "correct": 1,
+      "explanation": "The company gets the first chance to fix the problem. If it doesn't, you can go to the Board."
+    },
+    "LS7": {
+      "mode": "law",
+      "afterScenes": ["s2c"],
+      "question": "Can Meera complain to the Board before using BazaarBox's grievance mechanism?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. s. 13(3) requires a Data Principal to exhaust the opportunity of redressing her grievance with the Data Fiduciary before approaching the Board. Under s. 13(1) the fiduciary must provide readily available means of grievance redressal, and Rule 14(3) requires it to publish a response period not exceeding 90 days."
+    },
+    "LS8": {
+      "mode": "law",
+      "afterScenes": ["s3a"],
+      "question": "BazaarBox tells Meera to use its Privacy Centre with her registered email. Is it obstructing her rights?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. Rule 14(1) requires the fiduciary to publish the means for making rights requests and any particulars, such as a username or other identifier, needed to identify her. Rule 14(2) lets her make the request using those means and particulars. Its reply also names the Grievance Officer, as Rule 9 requires in every response to a rights request."
+    },
+    "CS8": {
+      "mode": "both",
+      "afterScenes": ["s4"],
+      "question": "What can you ask a company to tell you about your data?",
+      "options": ["Nothing, it's the company's business", "A summary of your data, what it does with it, and who it shared it with", "A copy of everything, ready to move to another app"],
+      "correct": 1,
+      "explanation": "You have a right to that summary, including who else got your data. India's law doesn't give you a portable copy."
+    },
+    "LS9": {
+      "mode": "law",
+      "afterScenes": ["s4"],
+      "question": "What does s. 11(1) entitle Meera to?",
+      "shortAnswerOptions": ["A summary of her data and its processing, and the identities of everyone it was shared with", "A portable copy of all her data", "Only her account settings"],
+      "correct": 0,
+      "modelAnswer": "s. 11(1)(a) gives a summary of the personal data processed and the processing activities; s. 11(1)(b) the identities of all other Data Fiduciaries and Data Processors it was shared with, with a description of the data shared; s. 11(1)(c) any other prescribed information. There is no right to data portability, unlike GDPR Art. 20. Under s. 11(2), clauses (b) and (c) don't cover sharing with another Data Fiduciary authorised by law to obtain the data, on its written request, for preventing, detecting or investigating offences or cyber incidents, or for prosecuting or punishing offences."
+    },
+    "CS9": {
+      "mode": "both",
+      "afterScenes": ["s6e"],
+      "question": "BazaarBox keeps Meera's invoices after she asks it to erase her data. Is that allowed?",
+      "options": ["No, erasure means everything goes", "Yes, if another law requires it to keep them"],
+      "correct": 1,
+      "explanation": "Companies must erase your data when asked, except what a law requires them to keep."
+    },
+    "LS10": {
+      "mode": "law",
+      "afterScenes": ["s6b"],
+      "question": "BazaarBox erased Meera's profile but kept her invoices and order records. Is that lawful?",
+      "shortAnswerOptions": ["Yes, to that extent", "No, erasure must be total"],
+      "correct": 0,
+      "modelAnswer": "Yes. s. 12(3) requires erasure on request unless retention is necessary for the specified purpose or for compliance with law; s. 8(7) says the same, and its Illustration (II) gives a bank keeping identity records because banking law requires it. Rule 8(3) also requires personal data and processing logs to be kept for at least one year for the purposes in the Seventh Schedule; its Illustration (Case 1) has an e-book platform keeping order details for a year even after the user deletes her account. Under s. 8(7)(b) BazaarBox must also have its Data Processors erase data it gave them. A complaint about lawful retention risks breaching the s. 15(d) duty not to file false or frivolous complaints."
+    },
+    "CS10": {
+      "mode": "both",
+      "afterScenes": ["s7"],
+      "question": "A big shopping app must erase your data if you haven't used it for:",
+      "options": ["Six months", "Three years", "It never has to"],
+      "correct": 1,
+      "explanation": "For shopping apps with at least 2 crore users, it's three years of inactivity, and they must warn you 48 hours before."
+    },
+    "LS11": {
+      "mode": "law",
+      "afterScenes": ["s7"],
+      "question": "Meera stopped using BazaarBox a year ago. Does Rule 8 already require BazaarBox to erase her data?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. Rule 8(1) and Third Schedule item 1 apply to e-commerce entities with at least 2 crore registered users in India. They must erase data (except what's needed for account access or virtual tokens) three years after the latest of: when she last approached the fiduciary for the specified purpose or exercised her rights, or the commencement of the Rules. One year is not enough, and her access request in Scene 3 counts as exercising her rights, which restarts the period. Rule 8(2) requires a warning at least 48 hours before erasure. This gives effect to s. 8(7)(a) and s. 8(8)."
+    }
+  },
+
+  "caseFiles": {
+    "CF8": {
+      "title": "Asking what they know",
+      "plain": "You can ask a company for a summary of your data, what it does with it, and who it shared it with. You don't get a portable copy.",
+      "law": "s. 11(1), 11(2); Rule 14(1), 14(2)",
+      "inForce": "13 May 2027"
+    },
+    "CF9": {
+      "title": "Fix it or delete it",
+      "plain": "You can ask a company to correct, complete or update your data, or to erase it.",
+      "law": "s. 12(1)–(3); Rule 14",
+      "inForce": "13 May 2027"
+    },
+    "CF10": {
+      "title": "When they can keep it",
+      "plain": "A company can keep data a law requires it to keep, like tax records, and must keep order records for at least a year. It must have its processors erase what it gave them.",
+      "law": "s. 8(7) and Illustration (II), s. 12(3); Rule 8(3)",
+      "inForce": "13 May 2027"
+    },
+    "CF11": {
+      "title": "Company first, Board second",
+      "plain": "Complain to the company first. If it doesn't fix the problem, you can go to the Data Protection Board.",
+      "law": "s. 13(1)–(3); Rule 14(3)",
+      "inForce": "13 May 2027"
+    },
+    "CF12": {
+      "title": "The three-year rule",
+      "plain": "Big shopping, gaming and social media apps must erase the data of users inactive for three years, with 48 hours' warning.",
+      "law": "s. 8(7)(a), 8(8); Rule 8(1), 8(2); Third Schedule",
+      "inForce": "13 May 2027"
+    },
+    "CF13": {
+      "title": "Who to contact",
+      "plain": "Every company must publish who answers your data questions, and name that person in its replies.",
+      "law": "s. 8(9); Rule 9; for Significant Data Fiduciaries, a Data Protection Officer based in India (s. 10(2)(a))",
+      "inForce": "13 May 2027 (Rule 9)"
+    }
+  },
+
+  "endings": [
+    {
+      "id": "clean",
+      "title": "Clean slate",
+      "requires": ["requested_erasure", "kept_evidence_ep2"],
+      "caption": "Meera's address is fixed, her BazaarBox account is gone, and she has BazaarBox's reply saved.",
+      "characters": [{ "id": "nyay", "expression": "happy" }],
+      "lines": [{ "speaker": "nyay", "text": "You asked, you checked, and you kept the receipts." }]
+    },
+    {
+      "id": "mostly",
+      "title": "Mostly clean",
+      "requires": ["requested_erasure"],
+      "requiresMissing": ["kept_evidence_ep2"],
+      "characters": [{ "id": "nyay", "expression": "neutral" }],
+      "lines": [{ "speaker": "nyay", "text": "Your data's mostly gone. Next time, save the company's reply. It's your proof of what they promised." }]
+    },
+    {
+      "id": "half",
+      "title": "Half done",
+      "requires": [],
+      "requiresMissing": ["requested_erasure"],
+      "caption": "Meera's address is fixed, but BazaarBox still holds three years of her orders.",
+      "characters": [],
+      "lines": [],
+      "card": {
+        "title": "What Meera could still do",
+        "items": [
+          "Ask BazaarBox to erase her account and data.",
+          "Save its reply.",
+          "Complain to BazaarBox's Grievance Officer if it refuses without a legal reason."
+        ]
+      }
+    }
+  ],
+
+  "badges": [
+    { "id": "rights_unlocked_access", "title": "Rights Unlocked: Access", "requiresScene": "s4" },
+    { "id": "rights_unlocked_erasure", "title": "Rights Unlocked: Erasure", "requiresFlag": "requested_erasure" },
+    { "id": "right_channel", "title": "Right Channel", "requiresFlag": "used_proper_channel", "requiresSceneNotVisited": "s3a" }
+  ]
+}

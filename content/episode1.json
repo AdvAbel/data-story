@@ -1,0 +1,712 @@
+{
+  "id": "ep1",
+  "title": "The App That Knew Too Much",
+  "startScene": "s1",
+  "shieldStart": 50,
+
+  "scenes": {
+    "s1": {
+      "title": "Rent Due",
+      "panels": [
+        {
+          "id": "P1.1",
+          "description": "Meera's rented room, night. A laptop with a cracked screen. Meera, worried.",
+          "background": "meera_room_night",
+          "characters": [{ "id": "meera", "expression": "worried" }],
+          "lines": [
+            { "speaker": "meera", "text": "Laptop's dead, rent's due Friday, and salary's late. Brilliant." }
+          ]
+        },
+        {
+          "id": "P1.2",
+          "description": "Close-up of her phone. An ad: \"QuickPaisa: ₹15,000 in 5 minutes! No paperwork!\"",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "neutral" }],
+          "appScreen": "quickpaisa_ad",
+          "lines": [
+            { "speaker": "meera", "text": "Five minutes? That's suspiciously fast." }
+          ]
+        },
+        {
+          "id": "P1.3",
+          "description": "Nyay appears beside the phone, small and glowing.",
+          "background": "meera_room_night",
+          "characters": [{ "id": "nyay", "expression": "happy" }],
+          "lines": [
+            { "speaker": "nyay", "text": "Before you tap anything: apps need your permission to use your data. Let's see what this one asks for." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "next": "s2"
+    },
+
+    "s2": {
+      "title": "Allow All?",
+      "panels": [
+        {
+          "id": "P2.1",
+          "description": "Phone screen: QuickPaisa sign-up. Permissions requested: Contacts, Photos, Location, SMS. One big button: \"Agree to all & get loan\". A tiny grey link: \"Privacy notice\".",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "worried" }],
+          "appScreen": "quickpaisa_permissions",
+          "lines": [
+            { "speaker": "meera", "text": "Contacts? Photos? It's a loan, not a photo album." }
+          ]
+        }
+      ],
+      "unlocks": ["CF1"],
+      "choice": {
+        "id": "C1",
+        "options": [
+          { "id": "A", "label": "Agree to all", "next": "s3a", "shield": -15, "setFlags": [] },
+          { "id": "B", "label": "Open the privacy notice first", "next": "s3b", "shield": 10, "setFlags": ["read_notice"] },
+          { "id": "C", "label": "Look for another lender", "next": "s3c", "shield": 10, "setFlags": ["read_notice"] }
+        ]
+      }
+    },
+
+    "s3a": {
+      "title": "Instant Approval",
+      "panels": [
+        {
+          "id": "P3A.1",
+          "description": "Confetti on screen: \"Approved! ₹15,000 credited.\"",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "happy" }],
+          "appScreen": "quickpaisa_approved",
+          "lines": [
+            { "speaker": "meera", "text": "That was easy. Too easy?" }
+          ]
+        },
+        {
+          "id": "P3A.2",
+          "description": "Nyay, arms folded.",
+          "background": "meera_room_night",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "nyay", "text": "You just shared your whole contact list. Your friends never agreed to that." }
+          ]
+        }
+      ],
+      "unlocks": ["CF2"],
+      "next": "s4"
+    },
+
+    "s3b": {
+      "title": "The Fine Print",
+      "panels": [
+        {
+          "id": "P3B.1",
+          "description": "The notice on screen: \"We may collect information to improve our services and for other business purposes.\" No list of data, no withdrawal link, no complaint details.",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "angry" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "quickpaisa_notice",
+          "lines": [
+            { "speaker": "meera", "text": "Which information? Which purposes? This says nothing." },
+            { "speaker": "nyay", "text": "A proper notice lists each piece of data, what it's for, and how to withdraw consent or complain." }
+          ]
+        },
+        {
+          "id": "P3B.2",
+          "description": "Meera unticks Contacts and Photos and taps Continue. Red banner: \"Loan denied. All permissions are required.\"",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "quickpaisa_denied",
+          "lines": [
+            { "speaker": "meera", "text": "So it's all or nothing?" },
+            { "speaker": "nyay", "text": "Consent that's forced like this isn't really free. Remember this moment." }
+          ]
+        }
+      ],
+      "unlocks": ["CF1", "CF2"],
+      "choice": {
+        "id": "C2",
+        "options": [
+          { "id": "C2a", "label": "Screenshot the notice and the denial, then accept", "next": "s4", "shield": 10, "setFlags": ["kept_evidence"] },
+          { "id": "C2b", "label": "Accept without saving anything", "next": "s4", "shield": -5, "setFlags": [] }
+        ]
+      }
+    },
+
+    "s3c": {
+      "title": "The Slow Bank",
+      "panels": [
+        {
+          "id": "P3C.1",
+          "description": "BankEasy app. A clean notice. A language toggle shows English and other Indian languages.",
+          "background": "phone_backdrop",
+          "characters": [{ "id": "meera", "expression": "happy" }],
+          "appScreen": "bankeasy_notice",
+          "lines": [
+            { "speaker": "meera", "text": "Now this is a notice." }
+          ]
+        },
+        {
+          "id": "P3C.2",
+          "description": "Under it: \"Approval in 7 working days.\" Her calendar shows rent due in 2 days.",
+          "background": "phone_backdrop",
+          "characters": [
+            { "id": "meera", "expression": "worried" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "bankeasy_wait",
+          "lines": [
+            { "speaker": "meera", "text": "I can't wait a week." },
+            { "speaker": "nyay", "text": "At least now you know what a good notice looks like." }
+          ]
+        }
+      ],
+      "unlocks": ["CF1", "CF2"],
+      "choice": {
+        "id": "C3",
+        "description": "Meera returns to QuickPaisa",
+        "options": [
+          { "id": "C3a", "label": "Screenshot BankEasy's notice and QuickPaisa's permission screen, then accept QuickPaisa", "next": "s4", "shield": 10, "setFlags": ["kept_evidence"] },
+          { "id": "C3b", "label": "Accept QuickPaisa without saving anything", "next": "s4", "shield": 0, "setFlags": [] }
+        ]
+      }
+    },
+
+    "s4": {
+      "title": "Three Days Late",
+      "panels": [
+        {
+          "id": "P4.1",
+          "description": "Meera at her office desk. Phone notification: \"EMI overdue: 3 days.\"",
+          "caption": "Two weeks later.",
+          "background": "office",
+          "characters": [{ "id": "meera", "expression": "neutral" }],
+          "appScreen": "emi_overdue",
+          "lines": [
+            { "speaker": "meera", "text": "Salary comes tomorrow. I'll pay then." }
+          ]
+        },
+        {
+          "id": "P4.2",
+          "description": "Phone rings: Ammamma.",
+          "background": "ammamma_home",
+          "characters": [{ "id": "ammamma", "expression": "worried" }],
+          "lines": [
+            { "speaker": "ammamma", "text": "Molay, someone sent me a message saying you don't repay your loans! What is this?" }
+          ]
+        },
+        {
+          "id": "P4.3",
+          "description": "A message from her manager pops up.",
+          "background": "office",
+          "characters": [],
+          "appScreen": "manager_message",
+          "lines": []
+        },
+        {
+          "id": "P4.4",
+          "description": "The message itself, from \"Rohan, QuickPaisa Recovery\". Meera (shaking).",
+          "background": "office",
+          "characters": [{ "id": "meera", "expression": "worried" }],
+          "appScreen": "rohan_message",
+          "lines": [
+            { "speaker": "meera", "text": "They messaged everyone. My boss. Ammamma." }
+          ]
+        },
+        {
+          "id": "P4.5",
+          "description": "Nyay, serious.",
+          "background": "office",
+          "characters": [{ "id": "nyay", "expression": "neutral" }],
+          "lines": [
+            { "speaker": "nyay", "text": "That's your data, and your contacts' data, being used for something none of them agreed to." }
+          ]
+        }
+      ],
+      "unlocks": ["CF4"],
+      "next": "s5"
+    },
+
+    "s5": {
+      "title": "What Now?",
+      "panels": [
+        {
+          "id": "P5.1",
+          "description": "Meera on her bed, staring at the QuickPaisa icon.",
+          "background": "meera_room_day",
+          "characters": [{ "id": "meera", "expression": "worried" }],
+          "appScreen": "quickpaisa_icon",
+          "lines": [
+            { "speaker": "meera", "text": "I have to do something." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C4",
+        "options": [
+          { "id": "D1", "label": "Uninstall QuickPaisa", "next": "s5a", "shield": -5, "setFlags": [], "removeOptionAfterUse": true },
+          { "id": "D2", "label": "Pay the EMI and say nothing", "next": "s5b", "shield": -10, "setFlags": [] },
+          { "id": "D3", "label": "Withdraw consent and complain to QuickPaisa", "next": "s6", "shield": 10, "setFlags": ["withdrew_consent"] }
+        ]
+      }
+    },
+
+    "s5a": {
+      "title": "Gone From the Phone",
+      "panels": [
+        {
+          "id": "P5A.1",
+          "description": "Next morning. More messages arrive from Meera's friends.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "friends_messages",
+          "lines": [
+            { "speaker": "meera", "text": "But I deleted the app!" },
+            { "speaker": "nyay", "text": "Uninstalling removes the app from your phone. It doesn't remove your data from their servers, and it doesn't withdraw your consent." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "returnToChoiceOf": "s5"
+    },
+
+    "s5b": {
+      "title": "Silence",
+      "panels": [
+        {
+          "id": "P5B.1",
+          "description": "Meera pays. The messages stop.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "neutral" },
+            { "id": "nyay", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "nyay", "text": "The messages stopped. But QuickPaisa still holds your contacts and photos, and nothing stops this happening to the next borrower." }
+          ]
+        }
+      ],
+      "unlocks": [],
+      "choice": {
+        "id": "C4b",
+        "options": [
+          { "id": "C4b1", "label": "Go back and act", "next": "s6", "shield": 10, "setFlags": ["withdrew_consent"] },
+          { "id": "C4b2", "label": "Leave it there", "next": "ending", "shield": 0, "setFlags": ["left_it_there"] }
+        ]
+      }
+    },
+
+    "s6": {
+      "title": "The Hidden Button",
+      "panels": [
+        {
+          "id": "P6.1",
+          "description": "Morning. Payment screen: \"EMI paid.\"",
+          "background": "meera_room_day",
+          "characters": [{ "id": "meera", "expression": "neutral" }],
+          "appScreen": "emi_paid",
+          "lines": [
+            { "speaker": "meera", "text": "The loan's paid. Now let's deal with the messages." }
+          ]
+        },
+        {
+          "id": "P6.2",
+          "description": "Split panel. Left: \"Give consent: 1 tap.\" Right: QuickPaisa's withdrawal path.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "angry" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "withdrawal_path",
+          "lines": [
+            { "speaker": "meera", "text": "One tap to say yes. Six screens and an essay to say no?" },
+            { "speaker": "nyay", "text": "Withdrawing consent should be about as easy as giving it." }
+          ]
+        },
+        {
+          "id": "P6.3",
+          "description": "In the app's footer Meera finds \"Grievance Officer: grievance@quickpaisa.example\".",
+          "background": "meera_room_day",
+          "characters": [],
+          "appScreen": "quickpaisa_footer",
+          "lines": []
+        },
+        {
+          "id": "P6.4",
+          "description": "Her email on screen.",
+          "background": "meera_room_day",
+          "characters": [],
+          "appScreen": "grievance_email",
+          "lines": []
+        }
+      ],
+      "unlocks": ["CF3", "CF5"],
+      "choice": {
+        "id": "C5",
+        "options": [
+          { "id": "C5a", "label": "Save screenshots of the messages and the email, then send", "next": "s7", "shield": 10, "shieldIfMissingFlag": "kept_evidence", "setFlags": ["kept_evidence", "raised_grievance"] },
+          { "id": "C5b", "label": "Just send it", "next": "s7", "shield": 0, "setFlags": ["raised_grievance"] }
+        ]
+      }
+    },
+
+    "s7": {
+      "title": "The Reply",
+      "panels": [
+        {
+          "id": "P7.1",
+          "description": "Two days later. QuickPaisa's reply.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "meera", "expression": "surprised" },
+            { "id": "nyay", "expression": "neutral" }
+          ],
+          "appScreen": "quickpaisa_reply",
+          "lines": [
+            { "speaker": "meera", "text": "Exempt? Can they just say that?" },
+            { "speaker": "nyay", "text": "Part of that is true, and part of it isn't. Let's check." }
+          ]
+        },
+        {
+          "id": "P7.2",
+          "description": "Video call with Arjun.",
+          "background": "meera_room_day",
+          "characters": [
+            { "id": "arjun", "expression": "neutral" },
+            { "id": "meera", "expression": "worried" }
+          ],
+          "lines": [
+            { "speaker": "arjun", "text": "At my startup, legal made us list every data item in our notice and put withdrawal one tap away. QuickPaisa's setup wouldn't get past our review." },
+            { "speaker": "meera", "text": "And if they don't fix it?" },
+            { "speaker": "arjun", "text": "Give them time to answer your grievance. If they don't, you can go to the Data Protection Board." }
+          ]
+        }
+      ],
+      "unlocks": ["CF6", "CF7"],
+      "next": "s8"
+    },
+
+    "s8": {
+      "title": "To Be Continued",
+      "panels": [
+        {
+          "id": "P8.1",
+          "description": "Meera marks her calendar.",
+          "background": "meera_room_day",
+          "characters": [{ "id": "meera", "expression": "happy" }],
+          "appScreen": "grievance_calendar",
+          "lines": [
+            { "speaker": "meera", "text": "I'll wait. And if they don't reply, I know where to go next." }
+          ]
+        },
+        {
+          "id": "P8.2",
+          "description": "Teaser card.",
+          "background": "meera_room_day",
+          "characters": [],
+          "appScreen": "episode6_teaser",
+          "lines": []
+        }
+      ],
+      "unlocks": [],
+      "next": "ending"
+    }
+  },
+
+  "appScreens": {
+    "quickpaisa_ad": {
+      "type": "ad",
+      "text": "QuickPaisa: ₹15,000 in 5 minutes! No paperwork!"
+    },
+    "quickpaisa_permissions": {
+      "type": "permissions",
+      "app": "QuickPaisa",
+      "permissions": [
+        { "name": "Contacts", "ticked": true },
+        { "name": "Photos", "ticked": true },
+        { "name": "Location", "ticked": true },
+        { "name": "SMS", "ticked": true }
+      ],
+      "button": "Agree to all & get loan",
+      "link": "Privacy notice"
+    },
+    "quickpaisa_approved": {
+      "type": "approved",
+      "app": "QuickPaisa",
+      "text": "Approved! ₹15,000 credited."
+    },
+    "quickpaisa_notice": {
+      "type": "notice",
+      "app": "QuickPaisa",
+      "text": "We may collect information to improve our services and for other business purposes."
+    },
+    "quickpaisa_denied": {
+      "type": "permissions",
+      "app": "QuickPaisa",
+      "permissions": [
+        { "name": "Contacts", "ticked": false },
+        { "name": "Photos", "ticked": false },
+        { "name": "Location", "ticked": true },
+        { "name": "SMS", "ticked": true }
+      ],
+      "button": "Continue",
+      "banner": "Loan denied. All permissions are required."
+    },
+    "bankeasy_notice": {
+      "type": "notice",
+      "app": "BankEasy",
+      "text": "We'll use your name, PAN and bank statements to assess your loan. Withdraw consent: Settings › Privacy (one tap). Questions: grievance@bankeasy.example. You can also complain to the Data Protection Board.",
+      "languages": ["English", "हिन्दी", "தமிழ்", "മലയാളം"]
+    },
+    "bankeasy_wait": {
+      "type": "calendar",
+      "app": "BankEasy",
+      "text": "Approval in 7 working days.",
+      "calendar": "Rent due in 2 days"
+    },
+    "emi_overdue": {
+      "type": "notification",
+      "app": "QuickPaisa",
+      "text": "EMI overdue: 3 days."
+    },
+    "manager_message": {
+      "type": "chat",
+      "sender": "Manager",
+      "text": "Meera, I got a strange WhatsApp about you."
+    },
+    "rohan_message": {
+      "type": "chat",
+      "sender": "Rohan, QuickPaisa Recovery",
+      "text": "Your contact Meera is a loan defaulter. Ask her to pay immediately."
+    },
+    "quickpaisa_icon": {
+      "type": "icon",
+      "app": "QuickPaisa"
+    },
+    "friends_messages": {
+      "type": "chat",
+      "sender": "Friends",
+      "text": "Got another one about you."
+    },
+    "emi_paid": {
+      "type": "approved",
+      "app": "QuickPaisa",
+      "text": "EMI paid."
+    },
+    "withdrawal_path": {
+      "type": "split",
+      "left": "Give consent: 1 tap.",
+      "rightSteps": ["Settings", "Account", "More", "Legal", "Data"],
+      "rightEnd": "Download withdrawal form and email it with your reason."
+    },
+    "quickpaisa_footer": {
+      "type": "footer",
+      "app": "QuickPaisa",
+      "text": "Grievance Officer: grievance@quickpaisa.example"
+    },
+    "grievance_email": {
+      "type": "email",
+      "subject": "Withdrawal of consent and grievance.",
+      "body": "I withdraw my consent to QuickPaisa accessing my contacts and photos. Your agent messaged my contacts about my loan. Please stop all such processing, delete my contacts' data, and confirm in writing."
+    },
+    "quickpaisa_reply": {
+      "type": "email",
+      "from": "QuickPaisa",
+      "body": "Your withdrawal is noted. It does not cancel your loan obligations. Data needed to service your account will still be processed. Regarding your contacts, we are exempt as a lender recovering dues."
+    },
+    "grievance_calendar": {
+      "type": "calendar",
+      "calendar": "Grievance sent. QuickPaisa says it replies within 30 days."
+    },
+    "episode6_teaser": {
+      "type": "teaser",
+      "text": "Episode 6: The Board. Will QuickPaisa answer?"
+    }
+  },
+
+  "scans": {
+    "CS1": {
+      "mode": "both",
+      "afterScenes": ["s3a", "s3b", "s3c"],
+      "question": "A loan app asks for your contacts, photos, location and SMS. What does it actually need to give you a loan?",
+      "options": ["All of them", "Only what's needed to check who you are and whether you can repay", "Whatever it asks for"],
+      "correct": 1,
+      "explanation": "Your consent only covers data that is necessary for the purpose you agreed to."
+    },
+    "LS1": {
+      "mode": "law",
+      "afterScenes": ["s3a", "s3b", "s3c"],
+      "question": "QuickPaisa only gives the loan if the borrower taps \"Agree to all\" for contacts, photos, location and SMS. Is consent given this way valid for everything?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. Under s. 6(1) consent must be free, specific, informed, unconditional and limited to data necessary for the specified purpose. The Act's own illustration to s. 6(1) limits consent given to a telemedicine app's access to a contact list. Making the loan conditional on unnecessary permissions also fails the \"unconditional\" requirement."
+    },
+    "LS2": {
+      "mode": "law",
+      "afterScenes": ["s3b"],
+      "question": "QuickPaisa's notice says data is used \"to improve our services and for other business purposes\". Does it comply?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. s. 5(1) requires the notice to state the personal data and purpose, how to withdraw consent and exercise rights, and how to complain to the Board. Rule 3 requires an itemised description of the data, the specified purpose, and links to withdraw, exercise rights and complain. BankEasy's notice shows compliance."
+    },
+    "LS3": {
+      "mode": "law",
+      "afterScenes": ["s4"],
+      "question": "QuickPaisa messages Meera's contacts. Whose personal data is this, and on what ground is it processed?",
+      "shortAnswerOptions": ["Meera's data, covered by her consent", "Each contact's own data, with no valid ground"],
+      "correct": 1,
+      "modelAnswer": "Each contact is a Data Principal (s. 2(j)). Processing needs consent or a legitimate use (s. 4). The contacts gave no consent, Meera cannot consent for them, and none of the uses in s. 7 fits."
+    },
+    "CS2": {
+      "mode": "both",
+      "afterScenes": ["s5a"],
+      "question": "Myth or reality? \"Uninstalling an app deletes my data and withdraws my consent.\"",
+      "options": ["Reality", "Myth"],
+      "correct": 1,
+      "explanation": "The company still has your data. You must withdraw consent or ask for erasure, and some records are kept for at least a year by law."
+    },
+    "CS3": {
+      "mode": "both",
+      "afterScenes": ["s6"],
+      "question": "Withdrawing consent should be:",
+      "options": ["Harder than giving it", "About as easy as giving it", "Impossible once you've taken a loan"],
+      "correct": 1,
+      "explanation": "The law says withdrawal must be comparable in ease to giving consent."
+    },
+    "LS5": {
+      "mode": "law",
+      "afterScenes": ["s6"],
+      "question": "Consent takes one tap; withdrawal takes six screens and an emailed form. Which provisions are engaged?",
+      "shortAnswerOptions": ["s. 6(4) and Rule 3(c)(i)", "s. 8(6) breach intimation", "s. 9 children's data"],
+      "correct": 0,
+      "modelAnswer": "s. 6(4) (withdrawal must be comparable in ease to giving consent) and Rule 3(c)(i) (the notice must give the means to withdraw with comparable ease). After withdrawal, s. 6(6) requires QuickPaisa and its processors to stop processing within a reasonable time unless law requires otherwise. No specific Schedule item covers s. 6, so item 7 applies: up to ₹50 crore."
+    },
+    "CS4": {
+      "mode": "both",
+      "afterScenes": ["s7"],
+      "question": "Meera withdrew consent. Does she still have to repay the loan?",
+      "options": ["No, withdrawing consent cancels the loan", "Yes"],
+      "correct": 1,
+      "explanation": "Withdrawal stops future data use; it does not undo the loan or anything done before it."
+    },
+    "LS4": {
+      "mode": "law",
+      "afterScenes": ["s7"],
+      "question": "QuickPaisa claims an exemption \"as a lender recovering dues\". Does s. 17(1)(f) cover messaging her contacts?",
+      "shortAnswerOptions": ["Yes", "No"],
+      "correct": 1,
+      "modelAnswer": "No. s. 17(1)(f) covers processing to ascertain the financial information, assets and liabilities of a person who has defaulted on a loan from a financial institution. Messaging contacts ascertains nothing; it discloses data. Even where s. 17(1) applies, s. 8(1) and s. 8(5) still bind the fiduciary."
+    },
+    "LS6": {
+      "mode": "law",
+      "afterScenes": ["s7"],
+      "question": "If this reaches the Board, who must prove that valid notice and consent were given?",
+      "shortAnswerOptions": ["QuickPaisa", "Meera"],
+      "correct": 0,
+      "modelAnswer": "QuickPaisa. Under s. 6(10), where consent is the basis of processing, the Data Fiduciary must prove notice and consent were given in accordance with the Act and Rules."
+    },
+    "CS5": {
+      "mode": "both",
+      "afterScenes": ["s8"],
+      "question": "If QuickPaisa ignores Meera's complaint, where can she go next?",
+      "options": ["Nowhere", "The Data Protection Board", "Straight to the Board, without complaining to QuickPaisa first"],
+      "correct": 1,
+      "explanation": "She must first use the company's grievance process, then she can complain to the Board."
+    }
+  },
+
+  "caseFiles": {
+    "CF1": {
+      "title": "What a notice must tell you",
+      "plain": "Before asking for consent, a company must tell you what data it wants, why, and how to withdraw or complain, in English or any language listed in the Constitution's Eighth Schedule.",
+      "law": "s. 5(1), 5(3); Rule 3",
+      "inForce": "13 May 2027"
+    },
+    "CF2": {
+      "title": "Real consent",
+      "plain": "Consent must be free and specific, and only covers data needed for the purpose. Extra grabs don't count.",
+      "law": "s. 6(1), 6(2) and illustrations",
+      "inForce": "13 May 2027 (Rule 3)"
+    },
+    "CF3": {
+      "title": "Taking consent back",
+      "plain": "You can withdraw at any time, as easily as you agreed. The company must then stop, but what you agreed to earlier (like a loan) still stands.",
+      "law": "s. 6(4), 6(5), 6(6); Rule 3(c)(i)",
+      "inForce": "13 May 2027"
+    },
+    "CF4": {
+      "title": "Your contacts are people too",
+      "plain": "Everyone in your phonebook has their own data rights. You can't consent for them.",
+      "law": "s. 2(j), s. 4, s. 7",
+      "inForce": ""
+    },
+    "CF5": {
+      "title": "Complaining to the company",
+      "plain": "Every company must name someone to answer data questions and must reply to grievances within the time it publishes (no more than 90 days).",
+      "law": "s. 8(9), 8(10), s. 13; Rules 9 and 14(3)",
+      "inForce": "13 May 2027"
+    },
+    "CF6": {
+      "title": "The loan-default exemption",
+      "plain": "Lenders can check a defaulter's finances, assets and debts. That doesn't let them message your contacts.",
+      "law": "s. 17(1)(f); s. 8(1), 8(5) still apply",
+      "inForce": ""
+    },
+    "CF7": {
+      "title": "Who has to prove consent",
+      "plain": "If there's a dispute, the company must prove it gave notice and got valid consent, not you.",
+      "law": "s. 6(10)",
+      "inForce": ""
+    }
+  },
+
+  "endings": [
+    {
+      "id": "strong",
+      "title": "Strong case",
+      "requires": ["raised_grievance", "kept_evidence"],
+      "caption": "Meera's folder: the screenshots and her grievance email.",
+      "characters": [{ "id": "nyay", "expression": "happy" }],
+      "lines": [
+        { "speaker": "nyay", "text": "You did everything right. If QuickPaisa stalls, you're ready for the Board." }
+      ]
+    },
+    {
+      "id": "good",
+      "title": "Good start",
+      "requires": ["raised_grievance"],
+      "characters": [{ "id": "nyay", "expression": "neutral" }],
+      "lines": [
+        { "speaker": "nyay", "text": "Good move. Next time, keep proof. The company has to prove consent, but your own records still help." }
+      ]
+    },
+    {
+      "id": "hard",
+      "title": "Hard ending",
+      "requires": ["left_it_there"],
+      "caption": "Meera moves on. QuickPaisa still holds her contacts and photos.",
+      "characters": [],
+      "lines": [],
+      "card": {
+        "title": "What Meera could have done",
+        "items": [
+          "Withdrawn her consent, as easily as she gave it.",
+          "Complained to QuickPaisa's Grievance Officer.",
+          "Kept screenshots as evidence.",
+          "Gone to the Data Protection Board if QuickPaisa didn't reply."
+        ]
+      }
+    }
+  ],
+
+  "badges": [
+    { "id": "rights_unlocked_grievance", "title": "Rights Unlocked: Grievance", "requiresFlag": "raised_grievance" },
+    { "id": "notice_reader", "title": "Notice Reader", "requiresFlag": "read_notice" }
+  ]
+}
