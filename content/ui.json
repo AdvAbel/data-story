@@ -15,7 +15,9 @@
       "This game collects no personal data. Your progress is saved only on this device, and you can wipe it below.",
       "The site is hosted on GitHub Pages, which may log visitors' IP addresses as part of hosting.",
       "Character art is AI-assisted.",
-      "Best played on a laptop or desktop."
+      "Best played on a laptop or desktop.",
+      "Read-aloud uses your browser's built-in voices.",
+      "Voices depend on your device. On a Mac, you can add better Indian English voices in System Settings → Accessibility → Spoken Content → System voice → Manage Voices → English (India)."
     ]
   },
 
@@ -64,6 +66,11 @@
     "rulesApplyFrom": "Rules apply from",
     "close": "Close",
     "readScreen": "Read full screen",
+    "readAloud": "Read aloud",
+    "replayPanel": "Read this panel again",
+    "music": "Music",
+    "musicVolume": "Music volume",
+    "musicCredits": "Music credits",
     "citizenScan": "Section Scan",
     "lawScan": "Law Scan",
     "correct": "Correct!",

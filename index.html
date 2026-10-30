@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-version="20261029-1850">
+<html lang="en" data-version="20261030-2109">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
   <!-- Fonts (Bangers for comic headings, Nunito for body text) are in fonts/
        and loaded by css/styles.css, so the game requests nothing from other sites. -->
-  <link rel="stylesheet" href="css/styles.css?v=20261029-1850">
+  <link rel="stylesheet" href="css/styles.css?v=20261030-2109">
 </head>
 <body>
   <!-- Top bar, shown only while playing an episode. -->
@@ -34,6 +34,13 @@
 
   <button id="continue" class="continue-button" type="button" hidden></button>
 
+  <!-- Read-aloud and music controls, on every screen (js/main.js fills in the words). -->
+  <div id="sound-controls" class="sound-controls">
+    <button id="read-toggle" class="sound-toggle" type="button" aria-pressed="false"></button>
+    <button id="music-toggle" class="sound-toggle" type="button" aria-pressed="true"></button>
+    <input id="music-volume" class="music-volume" type="range" min="0" max="100" step="5">
+  </div>
+
   <div id="modal" class="overlay" hidden></div>
   <div id="drawer" class="overlay drawer" hidden></div>
   <div id="toast" class="toast" role="status" hidden></div>
@@ -45,14 +52,16 @@
   <script type="importmap">
   {
     "imports": {
-      "./js/engine.js": "./js/engine.js?v=20261029-1850",
-      "./js/renderer.js": "./js/renderer.js?v=20261029-1850",
-      "./js/scans.js": "./js/scans.js?v=20261029-1850",
-      "./js/casefiles.js": "./js/casefiles.js?v=20261029-1850",
-      "./js/storage.js": "./js/storage.js?v=20261029-1850"
+      "./js/engine.js": "./js/engine.js?v=20261030-2109",
+      "./js/renderer.js": "./js/renderer.js?v=20261030-2109",
+      "./js/scans.js": "./js/scans.js?v=20261030-2109",
+      "./js/casefiles.js": "./js/casefiles.js?v=20261030-2109",
+      "./js/storage.js": "./js/storage.js?v=20261030-2109",
+      "./js/speech.js": "./js/speech.js?v=20261030-2109",
+      "./js/music.js": "./js/music.js?v=20261030-2109"
     }
   }
   </script>
-  <script type="module" src="js/main.js?v=20261029-1850"></script>
+  <script type="module" src="js/main.js?v=20261030-2109"></script>
 </body>
 </html>

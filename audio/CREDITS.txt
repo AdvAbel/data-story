@@ -1,0 +1,19 @@
+Music in Data Story. All three tracks are CC0 (public domain dedication).
+
+calm.mp3 (unchanged copy of "JRPG Piano.mp3")
+  Title:   JRPG Piano
+  Author:  Joth
+  Source:  https://opengameart.org/content/jrpg-piano
+  Licence: CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/
+
+tense.m4a (Insistent.ogg, converted to 64 kbps AAC)
+  Title:   Insistent: background loop
+  Author:  yd
+  Source:  https://opengameart.org/content/insistent-background-loop
+  Licence: CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/
+
+sting.m4a (winfretless_0.ogg, converted to AAC)
+  Title:   Win Jingle
+  Author:  Fupi
+  Source:  https://opengameart.org/content/win-jingle
+  Licence: CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/

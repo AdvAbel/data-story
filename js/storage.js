@@ -57,3 +57,34 @@ export function resetProgress() {
     // Nothing to do.
   }
 }
+
+// ---------- Sound settings (read-aloud, music, volume) ----------
+// Kept apart from progress. Used by the sound controls in main.js.
+
+const SOUND_KEY = "dataStory.sound.v1";
+
+export function loadSound() {
+  try {
+    const saved = window.localStorage.getItem(SOUND_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch (error) {
+    // Storage blocked or damaged: use the defaults.
+  }
+  return {};
+}
+
+export function saveSound(sound) {
+  try {
+    window.localStorage.setItem(SOUND_KEY, JSON.stringify(sound));
+  } catch (error) {
+    // Storage blocked: the setting lasts for this visit only.
+  }
+}
+
+export function resetSound() {
+  try {
+    window.localStorage.removeItem(SOUND_KEY);
+  } catch (error) {
+    // Nothing to do.
+  }
+}

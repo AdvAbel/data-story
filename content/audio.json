@@ -1,0 +1,60 @@
+{
+  "_note": "Settings for read-aloud and music. No story or legal text lives here, so the episode files stay exactly as they were.",
+
+  "voiceLists": {
+    "_note": "Voice names in order of preference. Browsers don't report gender, so this is the only way to choose. On-device voices are tried before online ones.",
+    "female": ["Isha", "Veena", "Sangeeta", "Tara", "Google English (India)", "Microsoft Neerja", "Microsoft Heera", "Samantha", "Karen", "Moira", "Tessa", "Serena", "Google UK English Female"],
+    "male": ["Rishi", "Aman", "Microsoft Prabhat", "Microsoft Ravi", "Daniel", "Alex", "Aaron", "Arthur", "Google UK English Male"]
+  },
+
+  "voices": {
+    "_note": "Chosen in this order. kind: which list to use ('any' = female list, then male; 'left' = whichever voice nobody has). avoid: try not to share a voice with these characters. pitch and rate: 1 = normal. 'narrator' reads captions and scans. The mediator has no spoken lines in the script yet.",
+    "meera": { "kind": "female", "pitch": 1.0, "rate": 1.0 },
+    "ammamma": { "kind": "female", "avoid": ["meera"], "pitch": 0.85, "rate": 0.85 },
+    "nyay": { "kind": "female", "avoid": ["meera", "ammamma"], "pitch": 1.6, "rate": 1.1 },
+    "arjun": { "kind": "male", "pitch": 1.0, "rate": 1.0 },
+    "kabir": { "kind": "male", "pitch": 1.25, "rate": 1.0 },
+    "rao": { "kind": "male", "pitch": 0.8, "rate": 0.92 },
+    "board_member": { "kind": "female", "avoid": ["meera", "ammamma"], "pitch": 1.0, "rate": 0.95 },
+    "qp_lawyer": { "kind": "male", "avoid": ["arjun"], "pitch": 1.0, "rate": 1.08 },
+    "narrator": { "kind": "any", "avoid": ["meera", "board_member"], "pitch": 1.0, "rate": 1.0 },
+    "mediator": { "kind": "left", "pitch": 1.0, "rate": 1.0 }
+  },
+
+  "music": {
+    "defaultVolume": 0.5,
+    "duckedTo": 0.3,
+    "_levelNote": "level evens out the tracks: 1 = as recorded.",
+    "tracks": {
+      "calm": { "file": "audio/calm.mp3", "level": 1 },
+      "tense": { "file": "audio/tense.m4a", "level": 1 },
+      "sting": { "file": "audio/sting.m4a", "level": 1 }
+    },
+    "_tenseNote": "Scenes that use the tense loop. Every other scene uses calm.",
+    "tenseScenes": {
+      "ep3": ["s2", "s2a", "s3", "s4"],
+      "ep6": ["s3", "s3b", "s4", "s4b", "s5", "s5b", "s6"]
+    }
+  },
+
+  "credits": [
+    {
+      "title": "JRPG Piano",
+      "author": "Joth",
+      "licence": "CC0",
+      "source": "https://opengameart.org/content/jrpg-piano"
+    },
+    {
+      "title": "Insistent: background loop",
+      "author": "yd",
+      "licence": "CC0",
+      "source": "https://opengameart.org/content/insistent-background-loop"
+    },
+    {
+      "title": "Win Jingle",
+      "author": "Fupi",
+      "licence": "CC0",
+      "source": "https://opengameart.org/content/win-jingle"
+    }
+  ]
+}

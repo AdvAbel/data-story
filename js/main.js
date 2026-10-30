@@ -11,10 +11,12 @@ import { Game } from "./engine.js";
 import { el, renderPanel, characterImage, speechBubble, withVersion } from "./renderer.js";
 import { showScan } from "./scans.js";
 import { setupDrawer, attachGame, updateCount } from "./casefiles.js";
-import { loadProgress, saveProgress, resetProgress, storageAvailable } from "./storage.js";
+import { loadProgress, saveProgress, resetProgress, storageAvailable, loadSound, saveSound, resetSound } from "./storage.js";
+import * as speech from "./speech.js";
+import * as music from "./music.js";
 
 // Everything loaded from content/, filled in by start().
-const data = { ui: null, characters: null, backgrounds: null, episodes: {} };
+const data = { ui: null, characters: null, backgrounds: null, audio: null, episodes: {} };
 
 // What the player is doing right now.
 const state = {
@@ -41,6 +43,7 @@ async function start() {
     data.ui = await loadJSON("content/ui.json");
     data.characters = (await loadJSON("content/characters.json")).characters;
     data.backgrounds = (await loadJSON("content/backgrounds.json")).backgrounds;
+    data.audio = await loadJSON("content/audio.json");
     for (const info of data.ui.episodes) {
       if (info.playable) data.episodes[info.id] = await loadJSON(info.file);
     }
@@ -61,6 +64,7 @@ async function start() {
   document.getElementById("casefile-label").textContent = L().caseFiles;
   setupDrawer(data.ui.labels);
   setupTapping();
+  setupSound();
   showTitle();
 }
 
@@ -78,6 +82,8 @@ function button(text, onClick, className = "big-button") {
 // Swap the whole screen.
 function showScreen(className, ...children) {
   state.run += 1; // stop any episode that was running
+  speech.stop(true);
+  music.setMood("calm");
   hud.hidden = true;
   continueButton.hidden = true;
   const screen = el("div", `screen ${className}`);
@@ -189,11 +195,17 @@ function showEpisodeSelect() {
 function showAbout() {
   const screen = showScreen("about-screen", el("h1", "screen-title", L().about));
   for (const paragraph of data.ui.about.paragraphs) screen.appendChild(el("p", "about-text", paragraph));
+  screen.appendChild(el("h2", "credits-title", L().musicCredits));
+  const credits = el("ul", "credits-list");
+  for (const track of data.audio.credits) credits.appendChild(el("li", "", `${track.title}, ${track.author} (${track.licence})`));
+  screen.appendChild(credits);
   if (!storageAvailable()) screen.appendChild(el("p", "storage-note", L().storageOff));
   screen.appendChild(
     button(L().resetProgress, () => {
       if (!window.confirm(L().resetConfirm)) return;
       resetProgress();
+      resetSound();
+      applySound();
       state.progress = loadProgress();
       state.mode = null;
       showToast(L().resetDone);
@@ -218,6 +230,7 @@ function tap() {
   const resolve = tapResolver;
   tapResolver = null;
   continueButton.hidden = true;
+  speech.stop(); // clicking to continue cuts the current speech short
   resolve();
 }
 
@@ -236,6 +249,90 @@ function setupTapping() {
       tap();
     }
   });
+}
+
+// ---------- Sound controls (read-aloud and music) ----------
+// Saved settings: { readAloud, music, volume }. Read-aloud starts off; music starts on.
+
+function soundSettings() {
+  const saved = loadSound();
+  return {
+    readAloud: Boolean(saved.readAloud),
+    music: saved.music !== false,
+    volume: typeof saved.volume === "number" ? saved.volume : data.audio.music.defaultVolume
+  };
+}
+
+// Make the buttons, slider, speech and music match the saved settings.
+function applySound() {
+  const sound = soundSettings();
+  const readButton = document.getElementById("read-toggle");
+  const musicButton = document.getElementById("music-toggle");
+  const slider = document.getElementById("music-volume");
+  readButton.setAttribute("aria-pressed", sound.readAloud);
+  musicButton.setAttribute("aria-pressed", sound.music);
+  slider.value = Math.round(sound.volume * 100);
+  slider.disabled = !sound.music;
+  document.body.classList.toggle("read-aloud-on", sound.readAloud);
+  if (sound.readAloud !== speech.isOn()) speech.setOn(sound.readAloud);
+  music.setOn(sound.music);
+  music.setVolume(sound.volume);
+}
+
+function setupSound() {
+  const readButton = document.getElementById("read-toggle");
+  const musicButton = document.getElementById("music-toggle");
+  const slider = document.getElementById("music-volume");
+  readButton.textContent = `🔊 ${L().readAloud}`;
+  musicButton.textContent = `🎵 ${L().music}`;
+  slider.setAttribute("aria-label", L().musicVolume);
+  readButton.hidden = !speech.supported;
+
+  const sound = soundSettings();
+  music.setupMusic(data.audio.music, sound.music, sound.volume);
+  speech.setupSpeech(data.audio.voices, data.audio.voiceLists, music.duck);
+  applySound();
+
+  const change = (changes) => {
+    saveSound({ ...soundSettings(), ...changes });
+    applySound();
+  };
+  readButton.addEventListener("click", () => change({ readAloud: !soundSettings().readAloud }));
+  musicButton.addEventListener("click", () => change({ music: !soundSettings().music }));
+  slider.addEventListener("input", () => change({ volume: slider.value / 100 }));
+
+  // Music waits for the first click or key press. This runs before the
+  // click's own action, so turning music off with that first click stays silent.
+  const firstInput = () => {
+    music.begin();
+    document.removeEventListener("click", firstInput, true);
+    document.removeEventListener("keydown", firstInput, true);
+  };
+  document.addEventListener("click", firstInput, true);
+  document.addEventListener("keydown", firstInput, true);
+}
+
+// The words on a panel that read-aloud reads: its caption and the lines showing so far.
+function panelWords(panel, linesShown) {
+  const words = [{ text: panel.caption }];
+  for (const line of panel.lines.slice(0, linesShown)) words.push({ text: line.text, who: line.speaker });
+  return words;
+}
+
+// A small button that reads the panel again. CSS hides it while read-aloud is off.
+function addReplayButton(panelElement, panel, bubbles) {
+  if (!speech.supported || (!panel.caption && !panel.lines.length)) return;
+  const replay = button("🔊", () => {
+    speech.speak(panelWords(panel, bubbles.filter((bubble) => !bubble.hidden).length));
+  }, "replay-button");
+  replay.setAttribute("aria-label", L().replayPanel);
+  panelElement.querySelector(".panel-art").appendChild(replay);
+}
+
+// Which loop a scene uses (the list is in content/audio.json).
+function moodFor(episodeId, sceneId) {
+  const tense = data.audio.music.tenseScenes[episodeId] || [];
+  return tense.includes(sceneId) ? "tense" : "calm";
 }
 
 // ---------- The Data Shield meter ----------
@@ -326,6 +423,7 @@ async function playScene(sceneId, run) {
   const game = state.game;
   game.goTo(sceneId);
   const scene = game.scene;
+  music.setMood(moodFor(game.episode.id, sceneId));
 
   hud.hidden = false;
   const reader = el("div", "reader");
@@ -337,9 +435,12 @@ async function playScene(sceneId, run) {
     const { element, bubbles } = renderPanel(panel, { ...data, appScreens: game.episode.appScreens });
     reader.appendChild(element);
     addReadButton(element);
+    addReplayButton(element, panel, bubbles);
     element.scrollIntoView({ behavior: "smooth", block: "start" });
 
     // The first bubble arrives with the panel; each tap shows the next one.
+    // Read-aloud reads the caption with the first bubble, then each new bubble as it appears.
+    if (!bubbles.length) speech.speak(panelWords(panel, 0));
     for (let i = 0; i < bubbles.length; i++) {
       if (i > 0) {
         await waitForTap();
@@ -347,6 +448,7 @@ async function playScene(sceneId, run) {
       }
       bubbles[i].hidden = false;
       bubbles[i].scrollIntoView({ behavior: "smooth", block: "nearest" });
+      speech.speak(i === 0 ? panelWords(panel, 1) : [{ text: panel.lines[i].text, who: panel.lines[i].speaker }]);
     }
     await waitForTap();
     if (run !== state.run) return;
@@ -421,6 +523,7 @@ function showEnding() {
   save();
 
   const screen = showScreen("ending-screen");
+  music.playSting();
   screen.appendChild(el("p", "ending-kicker", L().theEnd));
 
   if (ending) {

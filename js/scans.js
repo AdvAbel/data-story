@@ -6,6 +6,7 @@
 // shows; a correct short answer earns one citation point.
 
 import { el } from "./renderer.js";
+import { speak, stop } from "./speech.js";
 
 const modal = () => document.getElementById("modal");
 
@@ -61,17 +62,20 @@ export function showScan(scan, game, labels) {
       const next = el("button", "big-button", labels.continue);
       next.type = "button";
       next.addEventListener("click", () => {
+        stop();
         modal().hidden = true;
         modal().replaceChildren();
         resolve();
       });
       result.appendChild(next);
       next.focus();
+      speak([{ text: isLaw ? scan.modelAnswer : scan.explanation }]);
     }
 
     modal().replaceChildren(card);
     modal().hidden = false;
     card.scrollTop = 0;
     buttons[0].focus();
+    speak([{ text: scan.question }, ...optionTexts.map((text) => ({ text }))]);
   });
 }
